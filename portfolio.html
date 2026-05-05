@@ -9,7 +9,7 @@
 <!-- OG / Twitter -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Pratik Patil — AI Product Manager · Field Manual №01"/>
-<meta property="og:description" content="Building AI systems that replace work, not just assist it. Co-founder at Three Dots · 40+ automations shipped · IIT Ropar. Available for AI PM roles May 2025+."/>
+<meta property="og:description" content="Building AI systems that replace work, not just assist it. Co-founder at Three Dots · 40+ automations shipped · IIT Ropar. Open to AI PM roles · 2025–26 · Immediately Available."/>
 <meta property="og:image" content="og.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -436,6 +436,57 @@ section{padding:120px 0;position:relative}
 .tm-verify::before{content:'✓';font-weight:700}
 @media(max-width:900px){.tm-grid{grid-template-columns:1fr}}
 
+/* CASE STUDY · IMG SLOTS & PM ROLE */
+.cs-imgs{padding:0 2.4rem 2rem;border-top:1px solid var(--line-2);background:var(--paper-2)}
+.cs-imgs-title{font-family:'Geist Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;padding:1.4rem 0 1.2rem;display:flex;align-items:center;gap:8px}
+.cs-imgs-title::before{content:'';width:14px;height:1px;background:var(--vermillion)}
+.cs-imgs-title.solo{margin-bottom:0}
+.cs-img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:1rem}
+.cs-img-grid.single{grid-template-columns:1fr;max-width:640px}
+.img-slot{aspect-ratio:16/10;background:var(--paper);border:1.5px dashed var(--line-2);border-radius:6px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s}
+.img-slot:hover{border-color:var(--vermillion);background:var(--paper-3)}
+.img-slot::after{content:attr(data-label);font-family:'Fraunces',serif;font-style:italic;font-size:0.9rem;color:var(--ink);font-variation-settings:"SOFT" 100;text-align:center;padding:0 1rem;line-height:1.3;font-weight:400;position:relative;z-index:1}
+.img-slot::before{content:attr(data-hint);font-family:'Geist Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px;position:relative;z-index:1}
+.img-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;background:var(--paper)}
+.img-slot img[src=""],.img-slot img:not([src]){display:none}
+.img-slot.broken img{display:none}
+.cs-img-cap{font-family:'Geist Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;margin-top:8px;padding-left:6px;border-left:2px solid var(--vermillion);line-height:1.5}
+.cs-built-for{display:inline-flex;align-items:center;gap:8px;background:var(--vermillion);color:var(--paper);padding:5px 12px;border-radius:100px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;font-weight:500}
+.cs-built-for::before{content:'★';font-size:11px}
+
+/* PM Role inline subsection */
+.pm-role{background:var(--paper-2);border-left:3px solid var(--vermillion);padding:1rem 1.4rem;border-radius:0 6px 6px 0;margin-bottom:1.5rem}
+.pm-role-title{font-family:'Geist Mono',monospace;font-size:10px;color:var(--vermillion);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.7rem;display:flex;align-items:center;gap:8px;font-weight:500}
+.pm-role-title::before{content:'§';font-family:'Fraunces',serif;font-style:italic;font-size:1.1em;color:var(--ink);font-weight:500}
+.pm-role ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.pm-role ul li{font-size:13px;color:var(--ink-2);padding-left:18px;position:relative;line-height:1.6}
+.pm-role ul li::before{content:'◆';position:absolute;left:0;top:5px;color:var(--vermillion);font-size:8px}
+.pm-role .placeholder{color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif}
+
+/* PRODUCT ARTIFACTS */
+#artifacts{padding:120px 0;border-top:1px solid var(--line)}
+.art-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:2rem}
+.art-head h2{margin-bottom:0.5rem}
+.art-head .meta{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.1rem;color:var(--muted);max-width:340px;text-align:right}
+.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.art-card{background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1.6rem;display:flex;flex-direction:column;gap:1rem;transition:transform 0.35s cubic-bezier(.2,.8,.2,1),box-shadow 0.35s;position:relative;text-decoration:none;color:inherit}
+.art-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink);background:var(--paper)}
+.art-card-thumb{aspect-ratio:4/3;background:var(--paper);border:1px dashed var(--line-2);border-radius:4px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.art-card-thumb::after{content:attr(data-icon);font-family:'Fraunces',serif;font-style:italic;font-size:3.5rem;color:var(--vermillion);font-weight:300;font-variation-settings:"SOFT" 100;line-height:1}
+.art-card-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;background:var(--paper)}
+.art-card-thumb img[src=""],.art-card-thumb img:not([src]){display:none}
+.art-card h3{font-size:1.25rem;line-height:1.2}
+.art-card .art-type{font-family:'Geist Mono',monospace;font-size:10px;color:var(--vermillion);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.art-card .art-type::before{content:'';width:12px;height:1px;background:var(--vermillion)}
+.art-card .art-desc{font-size:13px;color:var(--ink-2);line-height:1.6}
+.art-card .art-link{font-family:'Geist Mono',monospace;font-size:11px;color:var(--ink);background:var(--paper-3);padding:6px 12px;border-radius:100px;align-self:flex-start;letter-spacing:0.04em;border:1px solid var(--line-2);transition:background 0.25s,color 0.25s,border-color 0.25s}
+.art-card:hover .art-link{background:var(--vermillion);color:var(--paper);border-color:var(--vermillion)}
+@media(max-width:900px){.art-grid{grid-template-columns:1fr}.cs-img-grid{grid-template-columns:1fr}}
+
+/* CASE STUDY · KENNECT PDF download */
+.cs-pdf-download{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;padding:10px 18px;border-radius:100px;font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:0.06em;margin-top:1rem;transition:background 0.25s,transform 0.25s}
+.cs-pdf-download:hover{background:var(--vermillion);transform:translateY(-2px)}
+
 /* CONTACT */
 #contact{padding:160px 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;border-top:2px solid var(--ink)}
 #contact::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(236,58,20,0.18) 0%,transparent 60%)}
@@ -522,6 +573,7 @@ footer a:hover{text-decoration:underline}
     <li><a href="#threedots" data-testid="nav-threedots">Three Dots</a></li>
     <li><a href="#projects" data-testid="nav-projects">Projects</a></li>
     <li><a href="#case-studies" data-testid="nav-case-studies">Case Studies</a></li>
+    <li><a href="#artifacts" data-testid="nav-artifacts">Artifacts</a></li>
     <li><a href="#decisions" data-testid="nav-decisions">Decisions</a></li>
     <li><a href="#testimonials" data-testid="nav-testimonials">Praise</a></li>
     <li><a href="#experience" data-testid="nav-experience">Experience</a></li>
@@ -542,11 +594,11 @@ footer a:hover{text-decoration:underline}
       <span class="sp-pulse"><span class="sp-pulse-core"></span></span>
       <span class="sp-label">Currently <strong>Available</strong></span>
       <span class="sp-sep">·</span>
-      <span class="sp-meta">AI PM Roles</span>
+      <span class="sp-meta">Open to Roles</span>
       <span class="sp-sep">·</span>
-      <span class="sp-meta">May 2025+</span>
+      <span class="sp-meta">2025–26</span>
       <span class="sp-sep">·</span>
-      <span class="sp-meta">Replies in &lt;24h</span>
+      <span class="sp-meta">Immediately Available</span>
     </div>
 
     <h1 class="hero-h1">
@@ -1081,6 +1133,29 @@ footer a:hover{text-decoration:underline}
         </div>
       </div>
 
+      <!-- P6: Kennect.inc — Sales Tech -->
+      <div class="proj-card span-6" data-testid="project-card-6">
+        <div class="proj-header">
+          <div class="proj-badges">
+            <span class="pbadge live">Client Work</span>
+            <span class="pbadge ai">Sales Tech</span>
+          </div>
+          <span class="ph-num">№ 06</span>
+        </div>
+        <h3>Kennect.inc — <span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[Your Title Here]</span></h3>
+        <p class="problem"><span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[FILL IN — short problem framing: e.g. Kennect was scaling sales-comp automation across 50+ enterprise customers with bespoke commission rules. Manual config was the bottleneck.]</span></p>
+        <div class="pstack">
+          <span>[FILL IN]</span><span>Sales Tech</span><span>AI</span><span>Workflow</span>
+        </div>
+        <div class="impact-grid">
+          <div class="impact-cell"><div class="val">[—]</div><div class="lbl">[Metric 1]</div></div>
+          <div class="impact-cell"><div class="val">[—]</div><div class="lbl">[Metric 2]</div></div>
+          <div class="impact-cell"><div class="val">[—]</div><div class="lbl">[Metric 3]</div></div>
+          <div class="impact-cell"><div class="val">[—]</div><div class="lbl">[Metric 4]</div></div>
+        </div>
+        <a href="assets/kennect-casestudy.pdf" download target="_blank" rel="noopener" class="cs-pdf-download" data-testid="kennect-pdf-link" style="margin-top:0.8rem">↓ Read Full Case Study (PDF)</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1102,6 +1177,16 @@ footer a:hover{text-decoration:underline}
           <div class="kpi-item"><div class="kpi-val">$1.53M</div><div class="kpi-lbl">Annual Savings</div></div>
           <div class="kpi-item"><div class="kpi-val">10x</div><div class="kpi-lbl">Response Speed</div></div>
           <div class="kpi-item"><div class="kpi-val">90%</div><div class="kpi-lbl">Class. Accuracy</div></div>
+        </div>
+      </div>
+      <div style="padding:1.6rem 2.4rem 0">
+        <div class="pm-role">
+          <div class="pm-role-title">My PM Role</div>
+          <ul>
+            <li><span class="placeholder">[FILL IN]</span> — user research: <em>e.g. shadowed 3 support agents for a week, ran ticket-cost analysis, identified that 60% of volume was 5 ticket types.</em></li>
+            <li><span class="placeholder">[FILL IN]</span> — prioritisation call: <em>e.g. de-prioritised "AI-generated reply" in favour of "trusted classifier + human draft" — chose trust over volume.</em></li>
+            <li><span class="placeholder">[FILL IN]</span> — stakeholder challenge: <em>e.g. convinced legal to allow auto-resolve on warranty checks by negotiating a daily human audit sample.</em></li>
+          </ul>
         </div>
       </div>
       <div class="cs-body">
@@ -1140,6 +1225,29 @@ footer a:hover{text-decoration:underline}
           <div class="arch-step">Email/SMS Sent</div>
         </div>
       </div>
+      <div class="cs-imgs">
+        <div class="cs-imgs-title">Visual Proof · Production Screens</div>
+        <div class="cs-img-grid">
+          <div>
+            <div class="img-slot" data-hint="Drop image" data-label="Workflow Canvas — n8n">
+              <img src="assets/beacon-n8n-1.png" alt="n8n workflow canvas" onerror="this.parentElement.classList.add('broken')"/>
+            </div>
+            <div class="cs-img-cap">n8n workflow canvas — full intake-to-resolution pipeline with branch logic</div>
+          </div>
+          <div>
+            <div class="img-slot" data-hint="Drop image" data-label="Ticket Routing Logic">
+              <img src="assets/beacon-routing.png" alt="Ticket routing logic" onerror="this.parentElement.classList.add('broken')"/>
+            </div>
+            <div class="cs-img-cap">BERT classifier routing — intent + urgency + VIP detection</div>
+          </div>
+          <div>
+            <div class="img-slot" data-hint="Drop image" data-label="Live Dashboard">
+              <img src="assets/beacon-dashboard.png" alt="Live dashboard" onerror="this.parentElement.classList.add('broken')"/>
+            </div>
+            <div class="cs-img-cap">Live ops dashboard — SLA tracking, queue depth, auto-resolve %</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="cs-card reveal" data-testid="case-study-2">
@@ -1153,6 +1261,16 @@ footer a:hover{text-decoration:underline}
           <div class="kpi-item"><div class="kpi-val">~2 min</div><div class="kpi-lbl">Per Lead Call</div></div>
           <div class="kpi-item"><div class="kpi-val">$5K/wk</div><div class="kpi-lbl">SDR Saved</div></div>
           <div class="kpi-item"><div class="kpi-val">+50%</div><div class="kpi-lbl">Deals Closed</div></div>
+        </div>
+      </div>
+      <div style="padding:1.6rem 2.4rem 0">
+        <div class="pm-role">
+          <div class="pm-role-title">My PM Role</div>
+          <ul>
+            <li><span class="placeholder">[FILL IN]</span> — user research: <em>e.g. spent 2 weeks listening to 50+ recorded SDR calls; counted scripted-question time vs strategic conversation time.</em></li>
+            <li><span class="placeholder">[FILL IN]</span> — prioritisation call: <em>e.g. shipped voice (not chat) first because speed-to-lead in real estate is measured in seconds, not hours.</em></li>
+            <li><span class="placeholder">[FILL IN]</span> — stakeholder challenge: <em>e.g. negotiated agent buy-in by guaranteeing every booked lead lands on the human's calendar with full context.</em></li>
+          </ul>
         </div>
       </div>
       <div class="cs-body">
@@ -1206,6 +1324,17 @@ footer a:hover{text-decoration:underline}
           <div class="kpi-item"><div class="kpi-val">Safety</div><div class="kpi-lbl">Drug Checks</div></div>
         </div>
       </div>
+      <div style="padding:1.6rem 2.4rem 0">
+        <span class="cs-built-for">Built for: Great Learning</span>
+        <div class="pm-role">
+          <div class="pm-role-title">My PM Role</div>
+          <ul>
+            <li><span class="placeholder">[FILL IN]</span> — user research: <em>e.g. interviewed 4 doctors on triage workflow gaps; mapped where current systems lose context between symptom intake and prescription.</em></li>
+            <li><span class="placeholder">[FILL IN]</span> — prioritisation call: <em>e.g. scoped V1 to OTC-only therapy + safety filters before doctor escalation — refused scope creep into prescriptions.</em></li>
+            <li><span class="placeholder">[FILL IN]</span> — stakeholder challenge: <em>e.g. defended LangGraph (over linear chain) to non-technical reviewers by walking through one branching real-case scenario end-to-end.</em></li>
+          </ul>
+        </div>
+      </div>
       <div class="cs-body">
         <div>
           <div class="cs-section-title">Architecture</div>
@@ -1241,6 +1370,110 @@ footer a:hover{text-decoration:underline}
           <div class="arch-step">Full Clinical Plan</div>
         </div>
       </div>
+      <div class="cs-imgs">
+        <div class="cs-imgs-title">Visual Proof · Live Deployment</div>
+        <div class="cs-img-grid single">
+          <div>
+            <div class="img-slot" data-hint="Drop image" data-label="Chatbot Interface — Great Learning Deployment">
+              <img src="assets/healthcare-chatbot.png" alt="Healthcare chatbot UI" onerror="this.parentElement.classList.add('broken')"/>
+            </div>
+            <div class="cs-img-cap">Streamlit chatbot interface — patient input → live multi-agent routing → clinical plan output</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS4: Kennect.inc — Sales Tech -->
+    <div class="cs-card reveal" data-testid="case-study-4">
+      <div class="cs-header">
+        <div>
+          <div class="cs-client-tag">Client · Kennect.inc — Sales Tech / Compensation Automation</div>
+          <h3>Kennect.inc — <span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[Your Title Here]</span></h3>
+          <p class="sub"><span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[FILL IN — one-line subtitle, e.g. AI-driven sales-comp configuration assistant for enterprise rollout.]</span></p>
+        </div>
+        <div class="cs-kpis">
+          <div class="kpi-item"><div class="kpi-val">[—]</div><div class="kpi-lbl">[Metric 1]</div></div>
+          <div class="kpi-item"><div class="kpi-val">[—]</div><div class="kpi-lbl">[Metric 2]</div></div>
+          <div class="kpi-item"><div class="kpi-val">[—]</div><div class="kpi-lbl">[Metric 3]</div></div>
+        </div>
+      </div>
+      <div style="padding:1.6rem 2.4rem 0">
+        <div class="pm-role">
+          <div class="pm-role-title">My PM Role</div>
+          <ul>
+            <li><span class="placeholder">[FILL IN]</span> — user research</li>
+            <li><span class="placeholder">[FILL IN]</span> — prioritisation call</li>
+            <li><span class="placeholder">[FILL IN]</span> — stakeholder challenge</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-section-title">The Problem</div>
+          <p><span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[FILL IN — full problem framing, customer context, what was failing, business cost.]</span></p>
+        </div>
+        <div>
+          <div class="cs-section-title">The Solution</div>
+          <ul>
+            <li><span class="placeholder">[FILL IN bullet 1]</span></li>
+            <li><span class="placeholder">[FILL IN bullet 2]</span></li>
+            <li><span class="placeholder">[FILL IN bullet 3]</span></li>
+            <li><span class="placeholder">[FILL IN bullet 4]</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-arch">
+        <div class="cs-arch-title">Full Case Study</div>
+        <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.05rem;color:var(--ink-2);line-height:1.5;margin:0.5rem 0 1rem">The full case study — including architecture, decision log, and metrics — is available as a downloadable PDF.</p>
+        <a href="assets/kennect-casestudy.pdf" download target="_blank" rel="noopener" class="cs-pdf-download" data-testid="kennect-cs-pdf">↓ Read Full Case Study (PDF)</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ PRODUCT ARTIFACTS ════════════════ -->
+<section id="artifacts">
+  <div class="container">
+    <div class="art-head reveal">
+      <div>
+        <div class="kicker"><span>§ 07b · Product Artifacts</span></div>
+        <h2>The <span class="italic">paper trail</span>.</h2>
+      </div>
+      <div class="meta">PRDs, prioritisation matrices, and wireframes — the receipts of how a decision actually gets made.</div>
+    </div>
+    <div class="art-grid reveal">
+
+      <a href="assets/prd-sample.pdf" target="_blank" rel="noopener" download class="art-card" data-testid="artifact-prd">
+        <div class="art-card-thumb" data-icon="¶">
+          <img src="assets/prd-sample-cover.png" alt="PRD sample cover" onerror="this.style.display='none'"/>
+        </div>
+        <div class="art-type">PDF · Product Requirements</div>
+        <h3>PRD — <span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[Project Name]</span></h3>
+        <p class="art-desc"><span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[FILL IN — one line summary of the PRD: scope, audience, problem statement, success metric.]</span></p>
+        <span class="art-link">↓ Download PDF</span>
+      </a>
+
+      <a href="assets/prioritization.png" target="_blank" rel="noopener" class="art-card" data-testid="artifact-prioritization">
+        <div class="art-card-thumb" data-icon="⊞">
+          <img src="assets/prioritization.png" alt="Prioritization framework" onerror="this.style.display='none'"/>
+        </div>
+        <div class="art-type">Image · Framework</div>
+        <h3>Prioritisation Framework</h3>
+        <p class="art-desc"><span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[FILL IN — e.g. 2×2 matrix used for scoping AI features: trust risk vs labour-replaced. Determined what shipped in V1 vs V2.]</span></p>
+        <span class="art-link">↗ View image</span>
+      </a>
+
+      <a href="assets/wireframes.png" target="_blank" rel="noopener" class="art-card" data-testid="artifact-wireframes">
+        <div class="art-card-thumb" data-icon="◧">
+          <img src="assets/wireframes.png" alt="Wireframes" onerror="this.style.display='none'"/>
+        </div>
+        <div class="art-type">Image · UX Spec</div>
+        <h3>Wireframes — <span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[Project Name]</span></h3>
+        <p class="art-desc"><span class="placeholder" style="color:var(--muted);font-style:italic;font-family:'Instrument Serif',serif">[FILL IN — Figma wireframes covering the 3 key states of the user flow + edge cases.]</span></p>
+        <span class="art-link">↗ View image</span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1381,10 +1614,10 @@ footer a:hover{text-decoration:underline}
         <div class="tm-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
         <div class="tm-quote">We'd spoken to four "AI agencies" before Pratik. They all pitched a dashboard. He pitched <strong>90 hours back per week</strong> and a Calendly full of qualified leads. 60 days later, our close rate was up 48% and our SDR team was finally doing strategy, not dialling. He thinks in outcomes.</div>
         <div class="tm-attribution">
-          <div class="tm-avatar">RS</div>
+          <div class="tm-avatar">VM</div>
           <div class="tm-meta">
-            <div class="tm-name">— R.S.</div>
-            <div class="tm-role">Founder & CEO · Real Estate (US, Stealth)</div>
+            <div class="tm-name">— Vijay Mali</div>
+            <div class="tm-role">Co-Founder · CCTech</div>
           </div>
         </div>
       </div>
@@ -1394,10 +1627,10 @@ footer a:hover{text-decoration:underline}
         <div class="tm-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
         <div class="tm-quote">Our support cost/conversation was killing gross margin. Pratik didn't throw a bigger model at it — he built a <strong>router</strong>. 72% of tickets now hit a cheap model, complex ones go to Sonnet, and edge cases escalate. Cost dropped 4.6×, CSAT went <strong>up</strong>. He has the instinct of someone who has shipped in production, not just in notebooks.</div>
         <div class="tm-attribution">
-          <div class="tm-avatar">LK</div>
+          <div class="tm-avatar">CT</div>
           <div class="tm-meta">
-            <div class="tm-name">— L.K.</div>
-            <div class="tm-role">VP Product · B2B SaaS (EU, Stealth)</div>
+            <div class="tm-name">— [Founder Name]</div>
+            <div class="tm-role">Founder · CreatorsTube</div>
           </div>
         </div>
       </div>
@@ -1509,7 +1742,7 @@ footer a:hover{text-decoration:underline}
       </div>
       <div class="availability">
         <div class="avail-dot"></div>
-        Available for full-time AI PM roles · May 2025 onwards
+        Immediately available for full-time AI PM roles · Open to Roles 2025–26
       </div>
     </div>
   </div>

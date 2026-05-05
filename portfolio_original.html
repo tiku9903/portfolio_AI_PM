@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pratik Patil — AI Product Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#080808;
+    --surface:#111111;
+    --surface2:#181818;
+    --border:#222222;
+    --border2:#2e2e2e;
+    --text:#e8e6e0;
+    --muted:#7a7870;
+    --accent:#e8b84b;
+    --accent2:#c99a30;
+    --accent-dim:rgba(232,184,75,0.1);
+    --green:#4caf7d;
+    --blue:#5b8dee;
+    --red:#e05c5c;
+    --r4:4px;
+    --r8:8px;
+    --r12:12px;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.05em}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{font-size:12px;font-family:'IBM Plex Mono',monospace;padding:7px 16px;border:1px solid var(--accent);color:var(--accent);border-radius:var(--r4);text-decoration:none;transition:all 0.2s;letter-spacing:0.03em}
+  .nav-cta:hover{background:var(--accent);color:#000}
+
+  /* SECTIONS */
+  section{padding:100px 0}
+  .container{max-width:1100px;margin:0 auto;padding:0 2rem}
+  .section-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border2);max-width:60px}
+  h1,h2,h3{font-family:'Syne',sans-serif;line-height:1.1}
+  h1{font-size:clamp(3rem,7vw,6.5rem);font-weight:800;letter-spacing:-0.03em}
+  h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:700;letter-spacing:-0.02em}
+  h3{font-size:1.25rem;font-weight:600;letter-spacing:-0.01em}
+  p{color:var(--muted);line-height:1.8}
+  
+  /* HERO */
+  #hero{padding:160px 0 120px;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr 380px;gap:6rem;align-items:center}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-dim);border:1px solid rgba(232,184,75,0.2);border-radius:100px;padding:6px 14px;margin-bottom:2rem}
+  .hero-eyebrow-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .hero-eyebrow span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase}
+  .hero-h1{margin-bottom:1.5rem}
+  .hero-h1 em{font-style:normal;color:var(--accent)}
+  .hero-sub{font-size:1.15rem;color:var(--muted);max-width:540px;margin-bottom:2.5rem;font-weight:300}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem}
+  .btn-primary{padding:13px 28px;background:var(--accent);color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border-radius:var(--r4);text-decoration:none;letter-spacing:0.02em;transition:all 0.2s}
+  .btn-primary:hover{background:#f0c55a}
+  .btn-ghost{padding:13px 28px;border:1px solid var(--border2);color:var(--text);font-size:14px;border-radius:var(--r4);text-decoration:none;letter-spacing:0.02em;transition:all 0.2s;font-family:'Syne',sans-serif}
+  .btn-ghost:hover{border-color:var(--muted);background:var(--surface)}
+  .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden}
+  .metric-item{background:var(--surface);padding:1.2rem 1rem;text-align:center}
+  .metric-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text);line-height:1}
+  .metric-num span{color:var(--accent)}
+  .metric-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+  
+  /* HERO RIGHT PANEL */
+  .hero-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r12);padding:1.5rem;position:relative}
+  .hero-card-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem}
+  .stack-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 10px;border:1px solid var(--border2);border-radius:100px;color:var(--muted)}
+  .chip.accent{border-color:rgba(232,184,75,0.3);color:var(--accent);background:var(--accent-dim)}
+  .hero-stat-row{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px}
+  .stat-bar-item{}
+  .stat-bar-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:5px}
+  .stat-bar-label strong{color:var(--text)}
+  .bar-track{height:4px;background:var(--border2);border-radius:2px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:2px;background:var(--accent);animation:fillBar 1.5s ease forwards}
+  @keyframes fillBar{from{width:0}}
+
+  /* DIVIDER */
+  .divider{height:1px;background:var(--border);margin:0}
+  
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .about-text h2{margin-bottom:1.5rem}
+  .about-text p+p{margin-top:1rem}
+  .about-highlight{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 var(--r8) var(--r8) 0;padding:1.2rem 1.5rem;margin-top:1.5rem}
+  .about-highlight p{color:var(--text);font-size:0.95rem;font-style:italic}
+  .edu-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r12);padding:1.5rem;margin-bottom:1rem}
+  .edu-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.5rem}
+  .edu-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(232,184,75,0.2)}
+  .edu-card h3{font-size:1rem;margin-bottom:2px}
+  .edu-card p{font-size:0.85rem;color:var(--muted)}
+  
+  /* SKILLS */
+  #skills{background:var(--surface)}
+  .skills-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .skill-group{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r12);padding:1.5rem}
+  .skill-group-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px}
+  .skill-group-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .skill-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .skill-list li{font-size:13px;color:var(--muted);padding-left:12px;position:relative}
+  .skill-list li::before{content:'→';position:absolute;left:0;color:var(--border2);font-size:10px;top:3px}
+  .skill-list li strong{color:var(--text);font-weight:500}
+
+  /* FRAMEWORK */
+  .framework-intro{max-width:600px;margin-bottom:3rem}
+  .framework-intro p{margin-top:0.5rem}
+  .framework-layers{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border2);border-radius:var(--r12);overflow:hidden;position:relative}
+  .framework-layer{padding:2rem 1.5rem;border-right:1px solid var(--border2);position:relative;transition:background 0.2s}
+  .framework-layer:last-child{border-right:none}
+  .framework-layer:hover{background:var(--surface2)}
+  .layer-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;margin-bottom:1rem}
+  .layer-icon{font-size:1.5rem;margin-bottom:0.8rem;line-height:1}
+  .layer-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.6rem}
+  .layer-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+  .layer-tools{display:flex;flex-direction:column;gap:5px}
+  .tool-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);padding:3px 8px;background:var(--surface2);border-radius:var(--r4);width:fit-content}
+  .layer-arrow{position:absolute;right:-10px;top:50%;transform:translateY(-50%);background:var(--border2);color:var(--muted);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;z-index:1}
+  .framework-layer:last-child .layer-arrow{display:none}
+
+  /* TOOLS GLOSSARY */
+  .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+  .tool-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r8);padding:1.2rem}
+  .tool-card-name{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:0.5rem}
+  .tool-card p{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+  /* PROJECTS */
+  #projects{background:var(--surface)}
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .project-card{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r12);padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:border-color 0.2s}
+  .project-card:hover{border-color:var(--border2);background:var(--surface2)}
+  .project-card.featured{border-color:rgba(232,184,75,0.25);background:var(--surface2)}
+  .project-header{display:flex;justify-content:space-between;align-items:flex-start}
+  .project-badges{display:flex;gap:6px;flex-wrap:wrap}
+  .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:100px;border:1px solid var(--border2);color:var(--muted)}
+  .badge.live{border-color:rgba(76,175,125,0.3);color:var(--green);background:rgba(76,175,125,0.08)}
+  .badge.ai{border-color:rgba(232,184,75,0.3);color:var(--accent);background:var(--accent-dim)}
+  .badge.voice{border-color:rgba(91,141,238,0.3);color:var(--blue);background:rgba(91,141,238,0.08)}
+  .project-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--border2)}
+  .project-card h3{color:var(--text);margin-bottom:0}
+  .project-card .problem{font-size:13.5px;color:var(--muted);line-height:1.7}
+  .project-stack{display:flex;flex-wrap:wrap;gap:6px}
+  .project-stack span{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);padding:2px 7px}
+  .project-impact{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r8);overflow:hidden}
+  .impact-stat{background:var(--surface2);padding:0.75rem;text-align:center}
+  .impact-stat .val{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--accent);line-height:1}
+  .impact-stat .lbl{font-size:10px;color:var(--muted);margin-top:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em}
+
+  /* CASE STUDIES */
+  .cs-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r12);overflow:hidden;margin-bottom:2.5rem}
+  .cs-header{padding:2.5rem 2.5rem 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;border-bottom:1px solid var(--border)}
+  .cs-client-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:6px}
+  .cs-client-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .cs-header h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:0.5rem}
+  .cs-header .sub{font-size:14px;color:var(--muted)}
+  .cs-kpis{display:flex;flex-direction:column;gap:8px;min-width:160px}
+  .kpi-item{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r8);padding:0.8rem 1rem;text-align:right}
+  .kpi-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--accent);line-height:1}
+  .kpi-lbl{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em}
+  .cs-body{padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  .cs-section-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem}
+  .cs-body p{font-size:13.5px;color:var(--muted);line-height:1.75}
+  .cs-body ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .cs-body ul li{font-size:13.5px;color:var(--muted);padding-left:16px;position:relative}
+  .cs-body ul li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:10px;top:4px}
+  .cs-arch{padding:0 2.5rem 2rem;border-top:1px solid var(--border)}
+  .cs-arch-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;padding:1.2rem 0 1rem}
+  .arch-flow{display:flex;align-items:center;gap:0;overflow-x:auto}
+  .arch-step{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r8);padding:0.7rem 1rem;font-size:12px;color:var(--text);white-space:nowrap;flex-shrink:0}
+  .arch-step.highlight{border-color:rgba(232,184,75,0.3);color:var(--accent);background:var(--accent-dim)}
+  .arch-arrow{color:var(--muted);padding:0 8px;font-size:12px;flex-shrink:0}
+
+  /* EXPERIENCE */
+  #experience{background:var(--surface)}
+  .exp-grid{display:grid;grid-template-columns:280px 1fr;gap:0;border:1px solid var(--border2);border-radius:var(--r12);overflow:hidden}
+  .exp-sidebar{background:var(--bg);border-right:1px solid var(--border);padding:2rem}
+  .exp-tab{padding:0.9rem 1rem;border-radius:var(--r8);cursor:pointer;transition:background 0.15s;margin-bottom:4px;border:1px solid transparent}
+  .exp-tab:hover{background:var(--surface2)}
+  .exp-tab.active{background:var(--surface2);border-color:var(--border2)}
+  .exp-tab-role{font-size:13px;font-weight:500;color:var(--text);font-family:'Syne',sans-serif}
+  .exp-tab-company{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px}
+  .exp-tab-period{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--border2);margin-top:4px}
+  .exp-content{padding:2.5rem;display:none}
+  .exp-content.active{display:block}
+  .exp-content-header{margin-bottom:1.5rem}
+  .exp-content-header h3{font-size:1.3rem;color:var(--text);margin-bottom:4px}
+  .exp-content-header .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+  .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+  .exp-bullets li{font-size:14px;color:var(--muted);padding-left:20px;position:relative;line-height:1.7}
+  .exp-bullets li::before{content:'◆';position:absolute;left:0;color:var(--accent);font-size:8px;top:6px}
+  .exp-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .exp-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid var(--border);color:var(--muted);border-radius:100px}
+
+  /* CONTACT */
+  #contact{text-align:center;padding:120px 0}
+  .contact-inner{max-width:640px;margin:0 auto}
+  .contact-inner h2{margin-bottom:1rem}
+  .contact-inner .sub{font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem}
+  .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+  .contact-link{display:flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid var(--border2);border-radius:var(--r8);color:var(--muted);text-decoration:none;font-size:13px;font-family:'IBM Plex Mono',monospace;transition:all 0.2s}
+  .contact-link:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+  .availability{display:inline-flex;align-items:center;gap:8px;background:rgba(76,175,125,0.08);border:1px solid rgba(76,175,125,0.2);border-radius:100px;padding:8px 18px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green)}
+  .avail-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+  
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+  footer a{color:var(--accent);text-decoration:none}
+
+  /* DECORATIVE */
+  .noise-bg{position:absolute;inset:0;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");background-size:200px 200px}
+  .grid-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.3}
+  
+  /* RESPONSIVE BASICS */
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-card{display:none}
+    .about-grid{grid-template-columns:1fr}
+    .skills-grid{grid-template-columns:repeat(2,1fr)}
+    .framework-layers{grid-template-columns:1fr 1fr}
+    .projects-grid{grid-template-columns:1fr}
+    .cs-header{grid-template-columns:1fr}
+    .cs-body{grid-template-columns:1fr}
+    .exp-grid{grid-template-columns:1fr}
+    .tools-grid{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ANIMATION HELPERS */
+  .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  /* ═══════════ THREE DOTS SECTION STYLES ═══════════ */
+  #threedots{background:var(--bg)}
+
+  /* stealth banner */
+  .stealth-banner{display:flex;align-items:center;gap:1.25rem;background:var(--surface);border:1px solid rgba(167,139,250,0.18);border-radius:var(--r12);padding:1.2rem 1.5rem;margin-bottom:2.5rem}
+  .stealth-icon{width:42px;height:42px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.22);border-radius:var(--r8);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+  .stealth-text h4{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:2px}
+  .stealth-text p{font-size:13px;color:var(--muted)}
+
+  /* impact bar */
+  .td-impact-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;margin-bottom:2.5rem}
+  .td-ib-cell{background:var(--surface);padding:1.1rem;text-align:center}
+  .td-ib-val{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text);line-height:1}
+  .td-ib-val span{color:var(--accent)}
+  .td-ib-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+
+  /* automation ticker */
+  .td-ticker-wrap{overflow:hidden;margin-bottom:2.5rem;position:relative}
+  .td-ticker-wrap::before,.td-ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:1;pointer-events:none}
+  .td-ticker-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+  .td-ticker-wrap::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+  .td-ticker-inner{display:flex;gap:10px;animation:tdTicker 30s linear infinite;width:max-content}
+  .td-ticker-inner:hover{animation-play-state:paused}
+  @keyframes tdTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .td-auto-chip{background:var(--surface);border:1px solid var(--border2);border-radius:100px;padding:5px 14px;white-space:nowrap;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);flex-shrink:0}
+  .td-auto-chip .cdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+  .cdot-green{background:var(--green)}
+  .cdot-blue{background:var(--blue)}
+  .cdot-gold{background:var(--accent)}
+  .cdot-violet{background:#a78bfa}
+
+  /* globe / map section */
+  .td-globe-wrap{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r12);padding:1.75rem;margin-bottom:2.5rem}
+  .td-globe-inner{display:grid;grid-template-columns:1fr 290px;gap:1.75rem;align-items:start}
+  .td-map-svg{width:100%;height:auto;border-radius:var(--r8);overflow:hidden}
+  .td-country-chips{display:flex;flex-direction:column;gap:8px}
+  .td-chip{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r8);padding:0.75rem 1rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+  .td-chip::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transition:transform 0.2s;transform-origin:center}
+  .td-chip:hover,.td-chip.active{border-color:rgba(232,184,75,0.3);background:var(--surface2)}
+  .td-chip:hover::before,.td-chip.active::before{transform:scaleY(1)}
+  .td-chip-top{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+  .td-chip-flag{font-size:15px;line-height:1}
+  .td-chip-name{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text)}
+  .td-chip-badge{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:100px;border:1px solid var(--border2);color:var(--muted);margin-left:auto}
+  .td-chip-badge.live{border-color:rgba(76,175,125,0.3);color:var(--green);background:rgba(76,175,125,0.07)}
+  .td-chip-badge.stealth{border-color:rgba(167,139,250,0.3);color:#a78bfa;background:rgba(167,139,250,0.07)}
+  .td-chip-desc{font-size:11.5px;color:var(--muted);line-height:1.5}
+
+  /* YT featured project card */
+  .project-card.yt-featured{grid-column:1/-1;border-color:rgba(232,184,75,0.3);background:var(--surface2);position:relative;overflow:hidden}
+  .project-card.yt-featured::before{content:'FEATURED';position:absolute;top:14px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(232,184,75,0.25);border-radius:100px;padding:3px 9px}
+  .yt-inner{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;align-items:start}
+  .yt-link-chip{display:inline-flex;align-items:center;gap:7px;background:var(--accent-dim);border:1px solid rgba(232,184,75,0.25);border-radius:var(--r8);padding:6px 13px;margin-bottom:1rem;text-decoration:none;transition:all 0.2s;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent)}
+  .yt-link-chip:hover{background:rgba(232,184,75,0.15);border-color:rgba(232,184,75,0.45)}
+  .yt-questions{display:flex;flex-direction:column;gap:7px;margin-top:0.75rem}
+  .yt-q{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r8);padding:0.6rem 0.9rem;font-size:12.5px;color:var(--muted);cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+  .yt-q:hover{border-color:rgba(232,184,75,0.25);color:var(--text)}
+  .yt-q-dot{color:var(--accent);flex-shrink:0;margin-top:1px;font-size:10px}
+  .yt-arch-box{background:var(--bg);border:1px solid var(--border2);border-radius:var(--r8);padding:1rem;margin-bottom:0.9rem}
+  .yt-arch-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.7rem}
+  .yt-flow-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:6px}
+  .yt-flow-row:last-child{margin-bottom:0}
+  .yt-step{background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:3px 8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text);white-space:nowrap}
+  .yt-step.hl{border-color:rgba(232,184,75,0.3);color:var(--accent);background:var(--accent-dim)}
+  .yt-arr{color:var(--muted);font-size:10px}
+
+  @media(max-width:900px){
+    .td-globe-inner{grid-template-columns:1fr}
+    .td-impact-bar{grid-template-columns:1fr 1fr}
+    .yt-inner{grid-template-columns:1fr}
+    .project-card.yt-featured{grid-column:auto}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">pratik.patil</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#threedots">Three Dots</a></li>
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#experience">Experience</a></li>
+  </ul>
+  <a href="mailto:patilpratik9903@gmail.com" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section id="hero">
+  <div style="position:absolute;inset:0;overflow:hidden">
+    <div class="grid-lines"></div>
+    <div class="noise-bg"></div>
+    <div style="position:absolute;right:-200px;top:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.06) 0%,transparent 65%)"></div>
+  </div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          <span>Available for AI PM Roles</span>
+        </div>
+        <h1 class="hero-h1">Building AI Systems<br/>That <em>Replace Work,</em><br/>Not Just Assist It.</h1>
+        <p class="hero-sub">Co-founder at Three Dots · AI Product Builder · IIT Ropar · Designing automation systems that eliminate manual work at scale — from real estate to retail to healthcare.</p>
+        <div class="hero-actions">
+          <a href="#case-studies" class="btn-primary">View Case Studies</a>
+          <a href="#projects" class="btn-ghost">See All Projects</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <div class="metric-num">15<span>+</span></div>
+            <div class="metric-label">Clients Served</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">40<span>+</span></div>
+            <div class="metric-label">AI Automations</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-num">70<span>%</span></div>
+            <div class="metric-label">Avg Cost Reduction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-tag">Current Stack</div>
+        <div class="stack-chips">
+          <span class="chip accent">n8n</span>
+          <span class="chip accent">Make.com</span>
+          <span class="chip accent">Zapier</span>
+          <span class="chip">LangGraph</span>
+          <span class="chip">RAG Pipelines</span>
+          <span class="chip">LangChain</span>
+          <span class="chip">BERT / NLP</span>
+          <span class="chip">Python</span>
+          <span class="chip accent">OpenAI APIs</span>
+          <span class="chip">Airtable</span>
+          <span class="chip">Magento</span>
+          <span class="chip">Streamlit</span>
+          <span class="chip">Claude API</span>
+          <span class="chip accent">Voice AI</span>
+        </div>
+        <div class="hero-stat-row">
+          <div class="stat-bar-item">
+            <div class="stat-bar-label"><span>Response Time Reduction</span><strong>90%</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:90%;animation-delay:0.2s"></div></div>
+          </div>
+          <div class="stat-bar-item">
+            <div class="stat-bar-label"><span>Labour Cost Saved</span><strong>70%</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:70%;animation-delay:0.4s"></div></div>
+          </div>
+          <div class="stat-bar-item">
+            <div class="stat-bar-label"><span>Auto-Classification Accuracy</span><strong>90%+</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:90%;animation-delay:0.6s"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <div class="section-label">About</div>
+        <h2>From Metallurgy to<br/>Machine Intelligence</h2>
+        <p style="margin-top:1.5rem">I started at IIT Ropar studying Metallurgy — a field fundamentally about understanding how materials behave under stress and how systems fail. Turns out that's a great mental model for product thinking.</p>
+        <p>During my BTech, I got obsessed with a different kind of material: data. I started building ML models, then LangChain pipelines, then full automation systems that could replace entire manual workflows — not just speed them up.</p>
+        <p>That led me to co-found <strong style="color:var(--text)">Three Dots</strong>, where we've built 40+ automation systems for clients across real estate, retail, healthcare, and content — saving hundreds of hours of manual work per week, per client.</p>
+        <div class="about-highlight">
+          <p>"I don't think about AI as a tool that assists people. I think about it as infrastructure that replaces repetitive work — so humans only touch the decisions that actually require them."</p>
+        </div>
+      </div>
+      <div class="fade-in" style="animation-delay:0.15s">
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div>
+              <h3>B.Tech · Metallurgy & Materials Science</h3>
+              <p>Indian Institute of Technology, Ropar</p>
+            </div>
+            <span class="edu-badge">2021–2025</span>
+          </div>
+          <p style="font-size:12.5px">Projects: Zomato Restaurant Analytics (K-Means, GMM, PCA), StockVision (LSTM + XGBoost), RAG pipeline for technical document Q&A.</p>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div>
+              <h3>Co-Founder</h3>
+              <p>Three Dots · threedots.pro</p>
+            </div>
+            <span class="edu-badge">2024–Present</span>
+          </div>
+          <p style="font-size:12.5px">AI automation studio — building end-to-end workflow systems using n8n, Make.com, LangGraph, and OpenAI APIs for B2B clients globally.</p>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-top">
+            <div>
+              <h3>AI/ML Engineering Intern</h3>
+              <p>CCTech · Pune</p>
+            </div>
+            <span class="edu-badge">May–Aug 2024</span>
+          </div>
+          <p style="font-size:12.5px">Built production RAG pipelines for engineering simulation knowledge bases. LangChain, LlamaIndex, vector stores, document chunking strategies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ SKILLS ═══════════════════════ -->
+<section id="skills">
+  <div class="container">
+    <div class="skills-header">
+      <div>
+        <div class="section-label">Technical Stack</div>
+        <h2>Skills & Capabilities</h2>
+      </div>
+    </div>
+    <div class="skills-grid fade-in">
+      <div class="skill-group">
+        <div class="skill-group-title">AI / LLMs</div>
+        <ul class="skill-list">
+          <li><strong>Prompt Engineering</strong> — system prompts, few-shot, chain-of-thought</li>
+          <li><strong>RAG Systems</strong> — LangChain, LlamaIndex, vector DBs</li>
+          <li><strong>LangGraph</strong> — stateful multi-agent orchestration</li>
+          <li><strong>Fine-tuning</strong> — DistilGPT-2, BERT classification</li>
+          <li><strong>OpenAI / Claude APIs</strong> — production integrations</li>
+          <li><strong>Voice AI</strong> — conversational agents, Vapi/Retell</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Automation</div>
+        <ul class="skill-list">
+          <li><strong>n8n</strong> — self-hosted workflow automation</li>
+          <li><strong>Make.com</strong> — visual no-code orchestration</li>
+          <li><strong>Zapier</strong> — SaaS trigger-action pipelines</li>
+          <li><strong>Webhooks / REST APIs</strong> — real-time integrations</li>
+          <li><strong>Airtable</strong> — relational data backends</li>
+          <li><strong>CRM Integrations</strong> — HubSpot, GoHighLevel</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Product</div>
+        <ul class="skill-list">
+          <li><strong>User Workflow Design</strong> — end-to-end journey mapping</li>
+          <li><strong>MVP Architecture</strong> — scoping, prioritisation, tradeoffs</li>
+          <li><strong>Product Strategy</strong> — GTM, positioning, pricing</li>
+          <li><strong>Analytics</strong> — GA4, Looker Studio, funnel design</li>
+          <li><strong>Wireframing</strong> — Figma, user story mapping</li>
+          <li><strong>Stakeholder Comms</strong> — exec-level presentations</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Technical</div>
+        <ul class="skill-list">
+          <li><strong>Python</strong> — Pandas, NumPy, Scikit-learn, PyTorch</li>
+          <li><strong>JavaScript</strong> — automation scripting, API calls</li>
+          <li><strong>SQL</strong> — querying, joins, aggregations</li>
+          <li><strong>ML Models</strong> — LSTM, XGBoost, K-Means, PCA</li>
+          <li><strong>Streamlit</strong> — rapid AI app prototyping</li>
+          <li><strong>Git</strong> — version control, collaborative dev</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ FRAMEWORK ═══════════════════════ -->
+<section id="framework">
+  <div class="container">
+    <div class="section-label">Methodology</div>
+    <div class="framework-intro">
+      <h2>My Automation Architecture</h2>
+      <p>Every system I build follows a 4-layer mental model. It's not just duct-taping APIs — it's designing workflows that are observable, recoverable, and human-in-the-loop where it matters.</p>
+    </div>
+    <div class="framework-layers fade-in">
+      <div class="framework-layer">
+        <div class="layer-arrow">→</div>
+        <div class="layer-num">Layer 01</div>
+        <div class="layer-icon">⬇</div>
+        <div class="layer-title">Input Layer</div>
+        <div class="layer-desc">Data ingestion from all sources. APIs, form submissions, CRM events, voice calls, webhooks, file uploads.</div>
+        <div class="layer-tools">
+          <span class="tool-tag">REST APIs</span>
+          <span class="tool-tag">Web Forms</span>
+          <span class="tool-tag">CRM Webhooks</span>
+          <span class="tool-tag">Voice Inbound</span>
+        </div>
+      </div>
+      <div class="framework-layer">
+        <div class="layer-arrow">→</div>
+        <div class="layer-num">Layer 02</div>
+        <div class="layer-icon">🧠</div>
+        <div class="layer-title">Processing Layer</div>
+        <div class="layer-desc">LLMs and reasoning systems extract intent, classify, enrich, and make decisions — with memory and state.</div>
+        <div class="layer-tools">
+          <span class="tool-tag">OpenAI / Claude</span>
+          <span class="tool-tag">LangGraph</span>
+          <span class="tool-tag">BERT / NLP</span>
+          <span class="tool-tag">RAG Pipelines</span>
+        </div>
+      </div>
+      <div class="framework-layer">
+        <div class="layer-arrow">→</div>
+        <div class="layer-num">Layer 03</div>
+        <div class="layer-icon">⚙</div>
+        <div class="layer-title">Orchestration Layer</div>
+        <div class="layer-desc">Event-driven workflow execution. Conditional routing, parallel execution, error handling, human escalation triggers.</div>
+        <div class="layer-tools">
+          <span class="tool-tag">n8n</span>
+          <span class="tool-tag">Make.com</span>
+          <span class="tool-tag">Zapier</span>
+          <span class="tool-tag">Custom Logic</span>
+        </div>
+      </div>
+      <div class="framework-layer">
+        <div class="layer-num">Layer 04</div>
+        <div class="layer-icon">✓</div>
+        <div class="layer-title">Output Layer</div>
+        <div class="layer-desc">Actionable results delivered to the right surface — CRM updates, calendar bookings, dashboards, SMS/email, auto-drafted responses.</div>
+        <div class="layer-tools">
+          <span class="tool-tag">CRM Updates</span>
+          <span class="tool-tag">Calendar Booking</span>
+          <span class="tool-tag">SMS / Email</span>
+          <span class="tool-tag">Dashboards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tools-grid fade-in" style="margin-top:3rem">
+      <div class="tool-card">
+        <div class="tool-card-name">n8n</div>
+        <p>Self-hosted, open-source workflow automation. I use it for complex multi-step pipelines where data privacy matters or where API costs need control. Runs LLM nodes natively.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-name">LangGraph</div>
+        <p>Framework for stateful, multi-agent reasoning graphs. Used when tasks require memory, conditional branching between agents, or retry logic — like healthcare triage systems.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-name">Make.com</div>
+        <p>Visual scenario-based automation. Best for client-facing systems where non-technical teams need to understand and modify workflows. Strong API + SaaS connector library.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-name">OpenAI / Claude APIs</div>
+        <p>Core LLM inference layer. GPT-4o for classification + generation tasks; Claude for long-document reasoning and nuanced instructions. Prompt-engineered, not fine-tuned by default.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-name">Zapier</div>
+        <p>Rapid deployment for SaaS-heavy stacks. Best when the client already lives in tools like HubSpot, Slack, or Gmail and needs fast, no-code trigger-action automation without infrastructure overhead.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-name">Airtable</div>
+        <p>Relational data backend for automation systems. Acts as the operational database — storing leads, tickets, logs — while connecting cleanly to n8n, Make, and Zapier via API.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ THREE DOTS ═══════════════════════ -->
+<section id="threedots">
+  <div class="container">
+    <div class="section-label">Three Dots · Co-Founder</div>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:2rem">
+      <div>
+        <h2 style="margin-bottom:0.6rem">AI Automation Studio</h2>
+        <p style="max-width:540px;font-size:1rem">We don't just integrate AI — we architect systems that permanently eliminate work. 40+ automations shipped across 15+ clients on 6 continents.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <a href="https://threedots.pro" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--accent);color:var(--accent);border-radius:var(--r4);text-decoration:none;transition:all 0.2s;background:var(--accent-dim)" onmouseover="this.style.background='var(--accent)';this.style.color='#000'" onmouseout="this.style.background='var(--accent-dim)';this.style.color='var(--accent)'">↗ threedots.pro</a>
+      </div>
+    </div>
+
+    <!-- STEALTH BANNER -->
+    <div class="stealth-banner fade-in">
+      <div class="stealth-icon">🔒</div>
+      <div class="stealth-text">
+        <h4>Primarily serving stealth-stage startups</h4>
+        <p>Most clients are pre-announcement — NDAs in place. Logos and identifiers anonymised below. Verified references available on request.</p>
+      </div>
+    </div>
+
+    <!-- IMPACT BAR -->
+    <div class="td-impact-bar fade-in">
+      <div class="td-ib-cell"><div class="td-ib-val"><span>40+</span></div><div class="td-ib-lbl">Automations Shipped</div></div>
+      <div class="td-ib-cell"><div class="td-ib-val"><span>15+</span></div><div class="td-ib-lbl">Global Clients</div></div>
+      <div class="td-ib-cell"><div class="td-ib-val">$<span>1.7M+</span></div><div class="td-ib-lbl">Annual Savings</div></div>
+      <div class="td-ib-cell"><div class="td-ib-val"><span>6</span>+</div><div class="td-ib-lbl">Countries Served</div></div>
+    </div>
+
+    <!-- AUTOMATION TICKER -->
+    <div class="td-ticker-wrap" aria-label="Automation types built at Three Dots">
+      <div class="td-ticker-inner">
+        <div class="td-auto-chip"><span class="cdot cdot-green"></span>AI Customer Service · AU</div>
+        <div class="td-auto-chip"><span class="cdot cdot-blue"></span>Voice Lead Qualification</div>
+        <div class="td-auto-chip"><span class="cdot cdot-gold"></span>YouTube Intelligence Engine</div>
+        <div class="td-auto-chip"><span class="cdot cdot-violet"></span>RAG Knowledge Base · SaaS</div>
+        <div class="td-auto-chip"><span class="cdot cdot-green"></span>E-Commerce Inventory Bot</div>
+        <div class="td-auto-chip"><span class="cdot cdot-blue"></span>Healthcare Triage Pipeline</div>
+        <div class="td-auto-chip"><span class="cdot cdot-gold"></span>CRM Enrichment Engine</div>
+        <div class="td-auto-chip"><span class="cdot cdot-violet"></span>Proposal Generation · B2B</div>
+        <div class="td-auto-chip"><span class="cdot cdot-green"></span>WhatsApp Support Agent</div>
+        <div class="td-auto-chip"><span class="cdot cdot-blue"></span>Investor Outreach System</div>
+        <div class="td-auto-chip"><span class="cdot cdot-gold"></span>Content Repurposing Pipeline</div>
+        <div class="td-auto-chip"><span class="cdot cdot-violet"></span>Cold Email Personalisation</div>
+        <!-- duplicate for seamless loop -->
+        <div class="td-auto-chip"><span class="cdot cdot-green"></span>AI Customer Service · AU</div>
+        <div class="td-auto-chip"><span class="cdot cdot-blue"></span>Voice Lead Qualification</div>
+        <div class="td-auto-chip"><span class="cdot cdot-gold"></span>YouTube Intelligence Engine</div>
+        <div class="td-auto-chip"><span class="cdot cdot-violet"></span>RAG Knowledge Base · SaaS</div>
+        <div class="td-auto-chip"><span class="cdot cdot-green"></span>E-Commerce Inventory Bot</div>
+        <div class="td-auto-chip"><span class="cdot cdot-blue"></span>Healthcare Triage Pipeline</div>
+        <div class="td-auto-chip"><span class="cdot cdot-gold"></span>CRM Enrichment Engine</div>
+        <div class="td-auto-chip"><span class="cdot cdot-violet"></span>Proposal Generation · B2B</div>
+        <div class="td-auto-chip"><span class="cdot cdot-green"></span>WhatsApp Support Agent</div>
+        <div class="td-auto-chip"><span class="cdot cdot-blue"></span>Investor Outreach System</div>
+        <div class="td-auto-chip"><span class="cdot cdot-gold"></span>Content Repurposing Pipeline</div>
+        <div class="td-auto-chip"><span class="cdot cdot-violet"></span>Cold Email Personalisation</div>
+      </div>
+    </div>
+
+    <!-- GLOBAL FOOTPRINT -->
+    <div class="section-label">Global Client Footprint</div>
+    <div class="td-globe-wrap fade-in">
+      <div class="td-globe-inner">
+        <!-- WORLD MAP SVG -->
+        <div>
+          <svg class="td-map-svg" viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+            <rect width="520" height="280" fill="#111111" rx="8"/>
+            <!-- continents -->
+            <path d="M60,60 L130,55 L145,80 L140,110 L120,130 L95,140 L70,130 L50,110 L45,85Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M100,155 L135,150 L145,175 L140,210 L120,230 L100,225 L88,200 L90,170Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M215,55 L255,50 L268,68 L265,90 L245,100 L220,95 L208,78Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M218,105 L258,100 L270,125 L265,170 L248,195 L225,190 L210,165 L208,130Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M270,85 L310,80 L325,100 L318,125 L295,130 L272,118Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M310,45 L400,40 L415,65 L410,100 L385,115 L355,118 L330,105 L315,85Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M360,120 L395,115 L405,140 L390,158 L365,155 L352,138Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <path d="M390,165 L450,160 L465,185 L460,215 L435,225 L405,218 L390,198Z" fill="#181818" stroke="#222222" stroke-width="0.8"/>
+            <!-- grid lines -->
+            <line x1="0" y1="140" x2="520" y2="140" stroke="#1a1a1a" stroke-width="0.5" stroke-dasharray="3,6"/>
+            <line x1="260" y1="0" x2="260" y2="280" stroke="#1a1a1a" stroke-width="0.5" stroke-dasharray="3,6"/>
+            <!-- Australia pin -->
+            <g style="cursor:pointer" onclick="tdActivate('au')">
+              <circle cx="425" cy="195" r="10" fill="rgba(232,184,75,0.12)" stroke="rgba(232,184,75,0.4)" stroke-width="1"/>
+              <circle cx="425" cy="195" r="4.5" fill="#e8b84b"/>
+              <circle cx="425" cy="195" r="9" fill="none" stroke="rgba(232,184,75,0.3)" stroke-width="0.8"><animate attributeName="r" values="5;16;5" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="3s" repeatCount="indefinite"/></circle>
+              <text x="425" y="215" text-anchor="middle" fill="#e8b84b" font-size="9" font-family="IBM Plex Mono,monospace">AU</text>
+            </g>
+            <!-- USA pin -->
+            <g style="cursor:pointer" onclick="tdActivate('us')">
+              <circle cx="88" cy="98" r="9" fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.4)" stroke-width="1"/>
+              <circle cx="88" cy="98" r="4" fill="#a78bfa"/>
+              <text x="88" y="118" text-anchor="middle" fill="#a78bfa" font-size="9" font-family="IBM Plex Mono,monospace">US</text>
+            </g>
+            <!-- India pin -->
+            <g style="cursor:pointer" onclick="tdActivate('in')">
+              <circle cx="295" cy="108" r="9" fill="rgba(91,141,238,0.12)" stroke="rgba(91,141,238,0.4)" stroke-width="1"/>
+              <circle cx="295" cy="108" r="4" fill="#5b8dee"/>
+              <text x="295" y="128" text-anchor="middle" fill="#5b8dee" font-size="9" font-family="IBM Plex Mono,monospace">IN</text>
+            </g>
+            <!-- UK/EU pin -->
+            <g style="cursor:pointer" onclick="tdActivate('eu')">
+              <circle cx="238" cy="73" r="9" fill="rgba(76,175,125,0.12)" stroke="rgba(76,175,125,0.4)" stroke-width="1"/>
+              <circle cx="238" cy="73" r="4" fill="#4caf7d"/>
+              <text x="238" y="60" text-anchor="middle" fill="#4caf7d" font-size="9" font-family="IBM Plex Mono,monospace">EU</text>
+            </g>
+            <!-- UAE pin -->
+            <g style="cursor:pointer" onclick="tdActivate('uae')">
+              <circle cx="286" cy="92" r="8" fill="rgba(224,92,92,0.12)" stroke="rgba(224,92,92,0.4)" stroke-width="1"/>
+              <circle cx="286" cy="92" r="3.5" fill="#e05c5c"/>
+              <text x="286" y="110" text-anchor="middle" fill="#e05c5c" font-size="8" font-family="IBM Plex Mono,monospace">UAE</text>
+            </g>
+          </svg>
+        </div>
+        <!-- COUNTRY CHIPS -->
+        <div class="td-country-chips">
+          <div class="td-chip active" id="tdchip-au" onclick="tdActivate('au')">
+            <div class="td-chip-top"><span class="td-chip-flag">🇦🇺</span><span class="td-chip-name">Australia</span><span class="td-chip-badge live">Live</span></div>
+            <div class="td-chip-desc">Beacon Lighting · 40K tickets/yr · $1.53M saved · 70% cost reduction</div>
+          </div>
+          <div class="td-chip" id="tdchip-us" onclick="tdActivate('us')">
+            <div class="td-chip-top"><span class="td-chip-flag">🇺🇸</span><span class="td-chip-name">United States</span><span class="td-chip-badge stealth">Stealth ×3</span></div>
+            <div class="td-chip-desc">Real estate voice AI, SaaS onboarding, B2B outreach — all pre-announcement</div>
+          </div>
+          <div class="td-chip" id="tdchip-eu" onclick="tdActivate('eu')">
+            <div class="td-chip-top"><span class="td-chip-flag">🇬🇧</span><span class="td-chip-name">UK / Europe</span><span class="td-chip-badge stealth">Stealth ×2</span></div>
+            <div class="td-chip-desc">B2B SaaS growth automations, cold outreach personalisation engine</div>
+          </div>
+          <div class="td-chip" id="tdchip-in" onclick="tdActivate('in')">
+            <div class="td-chip-top"><span class="td-chip-flag">🇮🇳</span><span class="td-chip-name">India</span><span class="td-chip-badge live">Live</span></div>
+            <div class="td-chip-desc">EdTech AI tutor, healthcare triage pipeline, e-commerce inventory bots</div>
+          </div>
+          <div class="td-chip" id="tdchip-uae" onclick="tdActivate('uae')">
+            <div class="td-chip-top"><span class="td-chip-flag">🇦🇪</span><span class="td-chip-name">UAE</span><span class="td-chip-badge stealth">Stealth</span></div>
+            <div class="td-chip-desc">Hospitality AI concierge · WhatsApp automation stack</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ PROJECTS ═══════════════════════ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 style="margin-bottom:2.5rem">What I've Built</h2>
+    <div class="projects-grid fade-in">
+
+      <!-- P1: Beacon Lighting -->
+      <div class="project-card featured">
+        <div class="project-header">
+          <div class="project-badges">
+            <span class="badge live">Client Work</span>
+            <span class="badge ai">AI Automation</span>
+          </div>
+          <span class="project-num">01</span>
+        </div>
+        <h3>Beacon Pulse — AI Customer Service Automation</h3>
+        <p class="problem">Australia's Beacon Lighting was handling 40,000 support tickets/year manually across 4 fragmented teams at $2.2M/year. 12-hour average response time, no 24/7 coverage, linear cost scaling with growth.</p>
+        <div class="project-stack">
+          <span>NLP / BERT</span><span>TensorFlow</span><span>Magento</span><span>CRM (Customer 360)</span><span>Python</span><span>SLA Engine</span>
+        </div>
+        <div class="project-impact">
+          <div class="impact-stat"><div class="val">70%</div><div class="lbl">Cost Reduction</div></div>
+          <div class="impact-stat"><div class="val">10x</div><div class="lbl">Faster Response</div></div>
+          <div class="impact-stat"><div class="val">$1.53M</div><div class="lbl">Annual Savings</div></div>
+          <div class="impact-stat"><div class="val">24/7</div><div class="lbl">Coverage</div></div>
+        </div>
+      </div>
+
+      <!-- P2: Lead Qualification Agent -->
+      <div class="project-card featured">
+        <div class="project-header">
+          <div class="project-badges">
+            <span class="badge live">Three Dots</span>
+            <span class="badge voice">Voice AI</span>
+          </div>
+          <span class="project-num">02</span>
+        </div>
+        <h3>Lead Qualification Voice Agent — Real Estate</h3>
+        <p class="problem">Real estate SDRs were burning 6–10 hours/week per agent on repetitive qualification calls — same scripted questions every time. Most leads weren't ready; the ready ones were reached too slowly.</p>
+        <div class="project-stack">
+          <span>Voice AI</span><span>CRM Integration</span><span>Calendar API</span><span>SMS Gateway</span><span>n8n</span><span>GoHighLevel</span>
+        </div>
+        <div class="project-impact">
+          <div class="impact-stat"><div class="val">~2min</div><div class="lbl">Avg Qualification</div></div>
+          <div class="impact-stat"><div class="val">50%</div><div class="lbl">More Closed Deals</div></div>
+          <div class="impact-stat"><div class="val">$5K/wk</div><div class="lbl">SDR Cost Saved</div></div>
+          <div class="impact-stat"><div class="val">100hrs</div><div class="lbl">Recovered/Week</div></div>
+        </div>
+      </div>
+
+      <!-- P3: Healthcare Assistant -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-badges">
+            <span class="badge ai">Multi-Agent</span>
+          </div>
+          <span class="project-num">03</span>
+        </div>
+        <h3>Multi-Agent Healthcare Assistant</h3>
+        <p class="problem">Clinical triage is slow, siloed, and hard to scale. Built a LangGraph pipeline where 5 specialized agents collaborate — from X-ray classification through pharmacy matching — mimicking a clinical workflow end-to-end.</p>
+        <div class="project-stack">
+          <span>LangGraph</span><span>Streamlit</span><span>Python</span><span>TensorFlow</span><span>Haversine Geo</span><span>pytest</span>
+        </div>
+        <div class="project-impact">
+          <div class="impact-stat"><div class="val">5</div><div class="lbl">Specialized Agents</div></div>
+          <div class="impact-stat"><div class="val">100%</div><div class="lbl">Conditional Routing</div></div>
+          <div class="impact-stat"><div class="val">E2E</div><div class="lbl">Triage → Pharmacy</div></div>
+          <div class="impact-stat"><div class="val">3</div><div class="lbl">Safety Checks</div></div>
+        </div>
+      </div>
+
+      <!-- P4: Doctor Recommendation System -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-badges">
+            <span class="badge ai">NLP + Bandits</span>
+          </div>
+          <span class="project-num">04</span>
+        </div>
+        <h3>Doctor Recommendation System — NLP + Explore/Exploit</h3>
+        <p class="problem">Traditional doctor recommendation relies on structured data, missing nuanced symptoms in natural language. Fine-tuned DistilGPT-2 on 112K patient-doctor conversations + used Thompson Sampling / UCB for personalised matching.</p>
+        <div class="project-stack">
+          <span>DistilGPT-2</span><span>SpaCy</span><span>ROUGE Scoring</span><span>MAB / UCB</span><span>Thompson Sampling</span><span>Python</span>
+        </div>
+        <div class="project-impact">
+          <div class="impact-stat"><div class="val">112K</div><div class="lbl">Training Conversations</div></div>
+          <div class="impact-stat"><div class="val">3</div><div class="lbl">Bandit Algorithms</div></div>
+          <div class="impact-stat"><div class="val">NLP</div><div class="lbl">Symptom Extraction</div></div>
+          <div class="impact-stat"><div class="val">Geo</div><div class="lbl">Haversine Matching</div></div>
+        </div>
+      </div>
+
+      <!-- P5: YouTube Intelligence Engine — Featured -->
+      <div class="project-card yt-featured fade-in">
+        <div class="project-header">
+          <div class="project-badges">
+            <span class="badge live">Global Client</span>
+            <span class="badge ai">Content Intelligence</span>
+            <span class="badge voice">Three Dots</span>
+          </div>
+          <span class="project-num">05</span>
+        </div>
+        <div class="yt-inner">
+          <div>
+            <h3 style="margin-bottom:0.6rem">YouTube Creator Intelligence Engine</h3>
+            <a href="https://docs.google.com/spreadsheets/d/1Yoapjet0snZ4TM6yJy5O1Tq13mV-wrbJhw7U2uWE5SE/edit?resourcekey=&gid=579693476#gid=579693476" target="_blank" rel="noopener" class="yt-link-chip">↗ View Live Resource</a>
+            <p class="problem">A structured AI system built for YouTubers worldwide — answering the exact questions every serious creator needs data on: monetisation thresholds, algorithm signals, audience behaviour, and revenue growth levers. Deployed as a global multi-country client engagement resource.</p>
+            <div class="yt-questions">
+              <div class="yt-q"><span class="yt-q-dot">▸</span>When do I qualify for the YouTube Partner Program?</div>
+              <div class="yt-q"><span class="yt-q-dot">▸</span>What upload frequency actually moves the algorithm?</div>
+              <div class="yt-q"><span class="yt-q-dot">▸</span>How do I analyse audience retention drop-off points?</div>
+              <div class="yt-q"><span class="yt-q-dot">▸</span>Which revenue streams scale fastest beyond AdSense?</div>
+            </div>
+          </div>
+          <div>
+            <div class="yt-arch-box">
+              <div class="yt-arch-title">Intelligence Architecture</div>
+              <div class="yt-flow-row">
+                <div class="yt-step hl">Creator Input</div>
+                <div class="yt-arr">→</div>
+                <div class="yt-step hl">AI Query Layer</div>
+                <div class="yt-arr">→</div>
+                <div class="yt-step">Data Enrichment</div>
+              </div>
+              <div class="yt-flow-row">
+                <div class="yt-step">YT Data API</div>
+                <div class="yt-arr">→</div>
+                <div class="yt-step hl">Insight Engine</div>
+                <div class="yt-arr">→</div>
+                <div class="yt-step hl">Structured Output</div>
+              </div>
+            </div>
+            <div class="project-impact">
+              <div class="impact-stat"><div class="val">Multi</div><div class="lbl">Country Reach</div></div>
+              <div class="impact-stat"><div class="val">Live</div><div class="lbl">Status</div></div>
+              <div class="impact-stat"><div class="val">AI</div><div class="lbl">Powered Q&amp;A</div></div>
+              <div class="impact-stat"><div class="val">0</div><div class="lbl">Manual Work</div></div>
+            </div>
+            <div class="project-stack" style="margin-top:0.75rem">
+              <span>Google Sheets</span><span>OpenAI API</span><span>YT Data API</span><span>Make.com</span><span>n8n</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="case-studies">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <h2 style="margin-bottom:2.5rem">Deep Dives</h2>
+
+    <!-- CS1: Beacon Lighting -->
+    <div class="cs-card fade-in">
+      <div class="cs-header">
+        <div>
+          <div class="cs-client-tag">Client · Beacon Lighting — Australia (Retail / E-Commerce)</div>
+          <h3>Beacon Pulse: AI-Powered Customer Service Automation</h3>
+          <p class="sub">Automating ticket routing, classification, and resolution across a 40,000 ticket/year operation</p>
+        </div>
+        <div class="cs-kpis">
+          <div class="kpi-item">
+            <div class="kpi-val">$1.53M</div>
+            <div class="kpi-lbl">Annual Savings</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-val">10x</div>
+            <div class="kpi-lbl">Response Speed</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-val">90%</div>
+            <div class="kpi-lbl">Classification Accuracy</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-section-title">The Problem</div>
+          <p>Beacon Lighting's customer support operation had grown into 4 fragmented teams — Customer Support, Warranty, Technical, and Returns — with no shared system and $2.2M in annual labour and overhead costs. With 40,000 tickets/year processed manually, response time averaged 12 hours, and there was zero after-hours capability. The trade division (B2B customers) was highest-value but received no priority treatment. Manual operations meant cost grew proportionally with volume — every new trade contract required new headcount.</p>
+        </div>
+        <div>
+          <div class="cs-section-title">The Solution</div>
+          <ul>
+            <li>Unified all channels (email, web form, live chat) into a single intake queue</li>
+            <li>NLP engine (BERT + TensorFlow) classifies intent, extracts entities, scores urgency, and runs safety scans on every ticket</li>
+            <li>ML classifier routes to the right agent queue — including instant VIP routing for trade customers</li>
+            <li>60% of tickets auto-resolved (order status, standard FAQs, warranty checks via Magento + Customer 360 integration)</li>
+            <li>30% AI-drafted with human review — agents edit, not write from scratch</li>
+            <li>Escalation keywords trigger immediate safety alerts; humans sign off all refunds</li>
+            <li>24/7 coverage through always-on automation — no overnight backlog</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-arch">
+        <div class="cs-arch-title">Architecture Flow</div>
+        <div class="arch-flow">
+          <div class="arch-step">Email / Web / Chat</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">NLP Engine (BERT)</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">ML Classifier</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">CRM + Magento Lookup</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">Routing Logic (VIP / SLA)</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">Auto-Resolve OR Agent Queue</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">Email/SMS Sent</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS2: Lead Qualification Agent -->
+    <div class="cs-card fade-in">
+      <div class="cs-header">
+        <div>
+          <div class="cs-client-tag">Three Dots Case Study · Real Estate (AI Voice Automation)</div>
+          <h3>Lead Qualification Voice Agent</h3>
+          <p class="sub">An autonomous voice AI that calls, qualifies, and books inbound leads — no SDR required</p>
+        </div>
+        <div class="cs-kpis">
+          <div class="kpi-item">
+            <div class="kpi-val">~2 min</div>
+            <div class="kpi-lbl">Per Lead Call</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-val">$5K/wk</div>
+            <div class="kpi-lbl">SDR Cost Saved</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-val">50%</div>
+            <div class="kpi-lbl">Lift in Deals Closed</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-section-title">The Problem</div>
+          <p>Real estate agents were losing 6–10 hours per week per person to qualification calls — asking the same questions (timeline, budget, pre-approval status) to leads who were mostly not ready. The few ready leads were being reached too slowly. Speed-to-lead is the single biggest predictor of conversion, and it was consistently breaking. SDR costs were $4–6K/week with high burnout and inconsistent script execution. The pipeline was leaky: good leads fell through while agents were stuck on bad ones.</p>
+        </div>
+        <div>
+          <div class="cs-section-title">The Solution</div>
+          <ul>
+            <li>Voice AI agent auto-dials leads within seconds of entering the CRM — from any source (ads, web form, list import)</li>
+            <li>Conversational qualification in natural language — not a robocall or IVR tree</li>
+            <li>Captures timeline, budget range, and pre-approval status during the call</li>
+            <li>Books qualified leads directly onto the agent's calendar; sends SMS confirmation; alerts the human agent</li>
+            <li>Parallel scale — can run hundreds of simultaneous calls with identical script discipline</li>
+            <li>Every call is logged, scored, and reviewable — insight loop for continuous improvement</li>
+            <li>Agents now speak only to leads who have already confirmed readiness to transact</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-arch">
+        <div class="cs-arch-title">Architecture Flow</div>
+        <div class="arch-flow">
+          <div class="arch-step">Lead enters CRM</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">AI Voice Agent Dials</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">NLP Qualification</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">Score: Qualified?</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">Calendar Booking</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">SMS + Agent Alert</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">CRM Log + Score</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS3: Healthcare Multi-Agent -->
+    <div class="cs-card fade-in">
+      <div class="cs-header">
+        <div>
+          <div class="cs-client-tag">Open Source Project · Multi-Agent AI Systems · Healthcare</div>
+          <h3>Multi-Agent Healthcare Pipeline (LangGraph)</h3>
+          <p class="sub">5-agent conditional graph for full clinical workflow — X-ray triage through nearest pharmacy matching</p>
+        </div>
+        <div class="cs-kpis">
+          <div class="kpi-item">
+            <div class="kpi-val">5</div>
+            <div class="kpi-lbl">Specialized Agents</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-val">E2E</div>
+            <div class="kpi-lbl">Clinical Workflow</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-val">Safety</div>
+            <div class="kpi-lbl">Drug Interaction Checks</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div>
+          <div class="cs-section-title">Architecture</div>
+          <p>Built a full agentic pipeline using LangGraph where each agent has a single, well-scoped responsibility. The Ingestion Agent extracts structured patient data. The Imaging Agent classifies chest X-rays (normal / pneumonia / COVID-suspect). Routing logic decides: severe or low SpO₂ → Doctor Escalation Agent; mild → Therapy Agent. The Therapy Agent filters OTC recommendations against age restrictions, allergy conflicts, and drug-drug interactions before suggesting medicines. The Pharmacy Agent geo-matches (haversine formula) the nearest pharmacy with live stock, ETA, and total cost.</p>
+        </div>
+        <div>
+          <div class="cs-section-title">Key Engineering Decisions</div>
+          <ul>
+            <li>LangGraph conditional graph — not a linear chain — ensures proper branching based on real severity data</li>
+            <li>Safety-first therapy suggestions: checks 3 safety layers before any medicine recommendation</li>
+            <li>Independent pytest modules for each agent — ensures reliability at agent level, not just system level</li>
+            <li>Streamlit frontend makes the entire pipeline interactive and auditable by non-technical users</li>
+            <li>Designed for real API integration (live doctor availability, live pharmacy stock) as next milestone</li>
+            <li>This project is a direct precursor architecture for real-world clinical triage automation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-arch">
+        <div class="cs-arch-title">LangGraph Agent Flow</div>
+        <div class="arch-flow">
+          <div class="arch-step">Patient Input</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">Ingestion Agent</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">Imaging Agent</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">Routing Logic</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">Doctor / Therapy Agent</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step highlight">Pharmacy Agent</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-step">Full Clinical Plan</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ EXPERIENCE ═══════════════════════ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 style="margin-bottom:2.5rem">Where I've Worked</h2>
+    <div class="exp-grid fade-in">
+      <div class="exp-sidebar">
+        <div class="exp-tab active" onclick="switchExp('threedots',this)">
+          <div class="exp-tab-role">Co-Founder</div>
+          <div class="exp-tab-company">Three Dots</div>
+          <div class="exp-tab-period">2024 – Present</div>
+        </div>
+        <div class="exp-tab" onclick="switchExp('cctech',this)">
+          <div class="exp-tab-role">AI/ML Engineer Intern</div>
+          <div class="exp-tab-company">CCTech</div>
+          <div class="exp-tab-period">May – Aug 2024</div>
+        </div>
+        <div class="exp-tab" onclick="switchExp('mantra',this)">
+          <div class="exp-tab-role">Associate Product Manager</div>
+          <div class="exp-tab-company">Mantra IAS</div>
+          <div class="exp-tab-period">2023 – 2024</div>
+        </div>
+        <div class="exp-tab" onclick="switchExp('neenopal',this)">
+          <div class="exp-tab-role">Product Analyst</div>
+          <div class="exp-tab-company">NeenOpal</div>
+          <div class="exp-tab-period">2022 – 2023</div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <div id="exp-threedots" class="exp-content active">
+          <div class="exp-content-header">
+            <h3>Co-Founder · Three Dots</h3>
+            <div class="meta">threedots.pro · Remote · 2024 – Present</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built and shipped 40+ AI automation systems across 15+ clients in real estate, retail, e-commerce, healthcare, and content industries</li>
+            <li>Designed the full product architecture for Beacon Pulse — an AI customer service system reducing Beacon Lighting's (AU) operational costs by 70%, saving $1.53M annually</li>
+            <li>Built a voice AI lead qualification agent for a real estate firm recovering 80–120 SDR hours/week and lifting closed deals by 30–50%</li>
+            <li>Built automation stacks using n8n, Make.com, Zapier, Airtable, and OpenAI APIs — each system production-grade with error handling, observability, and human-in-the-loop escalation</li>
+            <li>Owned client relationships end-to-end: problem discovery, solution architecture, implementation, and QA</li>
+            <li>Developed proprietary 4-layer automation framework (Input → Processing → Orchestration → Output) used across all client engagements</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">n8n</span><span class="exp-tag">Make.com</span><span class="exp-tag">LangGraph</span><span class="exp-tag">Voice AI</span><span class="exp-tag">OpenAI API</span><span class="exp-tag">Product Strategy</span><span class="exp-tag">Client Management</span>
+          </div>
+        </div>
+        <div id="exp-cctech" class="exp-content">
+          <div class="exp-content-header">
+            <h3>AI/ML Engineering Intern · CCTech</h3>
+            <div class="meta">Pune, India · May – August 2024</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed production RAG (Retrieval-Augmented Generation) pipelines for engineering simulation knowledge bases used by CAE/CAD engineers</li>
+            <li>Implemented document chunking strategies, vector indexing, and retrieval optimization using LangChain and LlamaIndex</li>
+            <li>Worked with domain-specific technical documentation — simulationHub and Buildings AI product knowledge bases</li>
+            <li>Evaluated retrieval quality using precision/recall metrics and improved chunk overlap strategies to reduce hallucination rates</li>
+            <li>Collaborated with senior engineers on embedding model selection and hybrid search architectures</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">RAG Pipelines</span><span class="exp-tag">LangChain</span><span class="exp-tag">LlamaIndex</span><span class="exp-tag">Vector DBs</span><span class="exp-tag">Python</span><span class="exp-tag">NLP</span>
+          </div>
+        </div>
+        <div id="exp-mantra" class="exp-content">
+          <div class="exp-content-header">
+            <h3>Associate Product Manager · Mantra IAS</h3>
+            <div class="meta">EdTech · 2023 – 2024</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Managed product roadmap and feature prioritization for an online learning platform serving UPSC aspirants</li>
+            <li>Conducted user research and defined KPIs — engagement rate, completion rate, NPS — to guide product decisions</li>
+            <li>Worked with engineering teams to spec and ship features using Jira-driven agile workflows</li>
+            <li>Tracked product analytics using GA4 and Looker Studio; presented weekly metrics to leadership</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Product Strategy</span><span class="exp-tag">GA4</span><span class="exp-tag">Jira</span><span class="exp-tag">Looker Studio</span><span class="exp-tag">Figma</span>
+          </div>
+        </div>
+        <div id="exp-neenopal" class="exp-content">
+          <div class="exp-content-header">
+            <h3>Product Analyst · NeenOpal</h3>
+            <div class="meta">Analytics Consulting · 2022 – 2023</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Analysed client datasets using Python (Pandas, NumPy) and SQL to surface operational insights</li>
+            <li>Built dashboards in Looker Studio for client-facing performance reporting</li>
+            <li>Collaborated with product and data teams to translate analytical findings into product recommendations</li>
+            <li>Supported data pipeline validation and reporting automation for recurring client deliverables</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Python</span><span class="exp-tag">SQL</span><span class="exp-tag">Looker Studio</span><span class="exp-tag">Data Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner fade-in">
+      <div class="section-label" style="justify-content:center">Let's Build Together</div>
+      <h2>Open to AI PM &amp;<br/>Automation Opportunities</h2>
+      <p class="sub">If you're building something where AI should be eliminating work — not just assisting it — I'd like to talk.</p>
+      <div class="contact-links">
+        <a href="mailto:patilpratik9903@gmail.com" class="contact-link">✉ patilpratik9903@gmail.com</a>
+        <a href="tel:+918459977227" class="contact-link">☎ +91 84599 77227</a>
+        <a href="https://threedots.pro" class="contact-link" target="_blank">↗ threedots.pro</a>
+      </div>
+      <div class="availability">
+        <div class="avail-dot"></div>
+        Available for full-time AI PM roles · May 2025 onwards
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Pratik Patil · <a href="https://threedots.pro">Three Dots</a> · IIT Ropar · 2025</p>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:11px">Built with intent. Every system should replace work, not add to it.</p>
+</footer>
+
+<script>
+function switchExp(id, el) {
+  document.querySelectorAll('.exp-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('exp-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+function tdActivate(id) {
+  ['au','us','eu','in','uae'].forEach(c => {
+    const chip = document.getElementById('tdchip-' + c);
+    if (chip) chip.classList.toggle('active', c === id);
+  });
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -84,6 +84,19 @@ section{padding:120px 0;position:relative}
 
 /* HERO */
 #hero{padding:140px 0 80px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+
+/* Status pill — premium availability indicator */
+.status-pill{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1.5px solid var(--ink);border-radius:100px;padding:9px 18px 9px 14px;font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);margin-bottom:1.5rem;box-shadow:3px 3px 0 var(--ink);transition:transform 0.3s,box-shadow 0.3s}
+.status-pill:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--vermillion)}
+.sp-pulse{position:relative;width:10px;height:10px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center}
+.sp-pulse::before,.sp-pulse::after{content:'';position:absolute;inset:0;border-radius:50%;background:#21b86b}
+.sp-pulse::after{animation:spPing 1.8s cubic-bezier(0,0,0.2,1) infinite;opacity:0.55}
+@keyframes spPing{0%{transform:scale(1);opacity:0.55}100%{transform:scale(2.6);opacity:0}}
+.sp-pulse-core{position:relative;z-index:2;width:5px;height:5px;background:#0b8a4a;border-radius:50%}
+.sp-label strong{font-weight:600;color:var(--vermillion);letter-spacing:0.06em}
+.sp-sep{color:var(--muted);opacity:0.6}
+.sp-meta{color:var(--muted)}
+@media(max-width:600px){.status-pill{font-size:10px;padding:7px 14px 7px 10px;flex-wrap:wrap;gap:6px}.sp-sep{display:none}}
 .hero-frame{border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:14px 0;display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:3rem}
 .hero-frame .double{border-top:1px solid var(--ink);position:absolute;left:0;right:0;margin-top:5px}
 .hero-h1{margin:1.2rem 0 1.4rem;position:relative}
@@ -460,7 +473,16 @@ footer a:hover{text-decoration:underline}
       <span>₹ Free · Available Worldwide</span>
     </div>
 
-    <div class="kicker"><span>Available · AI PM Roles · May 2025+</span></div>
+    <div class="status-pill" data-testid="hero-status">
+      <span class="sp-pulse"><span class="sp-pulse-core"></span></span>
+      <span class="sp-label">Currently <strong>Available</strong></span>
+      <span class="sp-sep">·</span>
+      <span class="sp-meta">AI PM Roles</span>
+      <span class="sp-sep">·</span>
+      <span class="sp-meta">May 2025+</span>
+      <span class="sp-sep">·</span>
+      <span class="sp-meta">Replies in &lt;24h</span>
+    </div>
 
     <h1 class="hero-h1">
       <span class="line"><span>Building <em class="italic">AI systems</em></span></span>
@@ -771,45 +793,47 @@ footer a:hover{text-decoration:underline}
     <div class="td-globe-wrap reveal">
       <div class="td-globe-inner">
         <div>
-          <svg class="td-map-svg" viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
-            <rect width="520" height="280" fill="#e3d7be"/>
-            <!-- continents (warm cream tones) -->
-            <path d="M60,60 L130,55 L145,80 L140,110 L120,130 L95,140 L70,130 L50,110 L45,85Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M100,155 L135,150 L145,175 L140,210 L120,230 L100,225 L88,200 L90,170Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M215,55 L255,50 L268,68 L265,90 L245,100 L220,95 L208,78Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M218,105 L258,100 L270,125 L265,170 L248,195 L225,190 L210,165 L208,130Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M270,85 L310,80 L325,100 L318,125 L295,130 L272,118Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M310,45 L400,40 L415,65 L410,100 L385,115 L355,118 L330,105 L315,85Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M360,120 L395,115 L405,140 L390,158 L365,155 L352,138Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <path d="M390,165 L450,160 L465,185 L460,215 L435,225 L405,218 L390,198Z" fill="#d3c4a4" stroke="#161311" stroke-width="0.8"/>
-            <line x1="0" y1="140" x2="520" y2="140" stroke="#161311" stroke-width="0.4" stroke-dasharray="2,5" opacity="0.3"/>
-            <line x1="260" y1="0" x2="260" y2="280" stroke="#161311" stroke-width="0.4" stroke-dasharray="2,5" opacity="0.3"/>
+          <svg class="td-map-svg" viewBox="0 0 520 224" xmlns="http://www.w3.org/2000/svg" id="dotMap">
+            <defs>
+              <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#161311" stop-opacity="0.04"/>
+                <stop offset="100%" stop-color="#161311" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="520" height="224" fill="#ece2cd"/>
+            <rect width="520" height="224" fill="url(#mapGlow)"/>
+            <line x1="0" y1="112" x2="520" y2="112" stroke="#161311" stroke-width="0.4" stroke-dasharray="2,6" opacity="0.18"/>
+            <g id="dotMapDots"></g>
             <!-- AU pin -->
-            <g style="cursor:none" onclick="tdActivate('au')">
-              <circle cx="425" cy="195" r="12" fill="rgba(236,58,20,0.15)" stroke="#ec3a14" stroke-width="1.2"/>
-              <circle cx="425" cy="195" r="5" fill="#ec3a14"/>
-              <circle cx="425" cy="195" r="9" fill="none" stroke="#ec3a14" stroke-width="1"><animate attributeName="r" values="6;18;6" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="3s" repeatCount="indefinite"/></circle>
-              <text x="425" y="218" text-anchor="middle" fill="#161311" font-size="9" font-family="Geist Mono,monospace" font-weight="600">AU</text>
+            <g style="cursor:none" onclick="tdActivate('au')" id="pin-au">
+              <circle cx="452" cy="156" r="14" fill="rgba(236,58,20,0.12)"/>
+              <circle cx="452" cy="156" r="11" fill="none" stroke="#ec3a14" stroke-width="1.4"><animate attributeName="r" values="7;22;7" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="2.6s" repeatCount="indefinite"/></circle>
+              <circle cx="452" cy="156" r="5.5" fill="#ec3a14" stroke="#f3ebdc" stroke-width="1.5"/>
+              <text x="452" y="180" text-anchor="middle" fill="#161311" font-size="10" font-family="Geist Mono,monospace" font-weight="700" letter-spacing="0.08em">AU</text>
             </g>
-            <g style="cursor:none" onclick="tdActivate('us')">
-              <circle cx="88" cy="98" r="10" fill="rgba(124,58,237,0.18)" stroke="#7c3aed" stroke-width="1.1"/>
-              <circle cx="88" cy="98" r="4.5" fill="#7c3aed"/>
-              <text x="88" y="120" text-anchor="middle" fill="#161311" font-size="9" font-family="Geist Mono,monospace" font-weight="600">US</text>
+            <g style="cursor:none" onclick="tdActivate('us')" id="pin-us">
+              <circle cx="108" cy="52" r="12" fill="rgba(124,58,237,0.16)"/>
+              <circle cx="108" cy="52" r="9" fill="none" stroke="#7c3aed" stroke-width="1.2"><animate attributeName="r" values="6;18;6" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="3s" repeatCount="indefinite"/></circle>
+              <circle cx="108" cy="52" r="5" fill="#7c3aed" stroke="#f3ebdc" stroke-width="1.5"/>
+              <text x="108" y="76" text-anchor="middle" fill="#161311" font-size="10" font-family="Geist Mono,monospace" font-weight="700" letter-spacing="0.08em">US</text>
             </g>
-            <g style="cursor:none" onclick="tdActivate('in')">
-              <circle cx="295" cy="108" r="10" fill="rgba(58,123,213,0.18)" stroke="#3a7bd5" stroke-width="1.1"/>
-              <circle cx="295" cy="108" r="4.5" fill="#3a7bd5"/>
-              <text x="295" y="130" text-anchor="middle" fill="#161311" font-size="9" font-family="Geist Mono,monospace" font-weight="600">IN</text>
+            <g style="cursor:none" onclick="tdActivate('in')" id="pin-in">
+              <circle cx="356" cy="84" r="12" fill="rgba(58,123,213,0.16)"/>
+              <circle cx="356" cy="84" r="9" fill="none" stroke="#3a7bd5" stroke-width="1.2"><animate attributeName="r" values="6;18;6" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="2.8s" repeatCount="indefinite"/></circle>
+              <circle cx="356" cy="84" r="5" fill="#3a7bd5" stroke="#f3ebdc" stroke-width="1.5"/>
+              <text x="356" y="108" text-anchor="middle" fill="#161311" font-size="10" font-family="Geist Mono,monospace" font-weight="700" letter-spacing="0.08em">IN</text>
             </g>
-            <g style="cursor:none" onclick="tdActivate('eu')">
-              <circle cx="238" cy="73" r="10" fill="rgba(31,77,51,0.2)" stroke="#1f4d33" stroke-width="1.1"/>
-              <circle cx="238" cy="73" r="4.5" fill="#1f4d33"/>
-              <text x="238" y="58" text-anchor="middle" fill="#161311" font-size="9" font-family="Geist Mono,monospace" font-weight="600">EU</text>
+            <g style="cursor:none" onclick="tdActivate('eu')" id="pin-eu">
+              <circle cx="292" cy="44" r="12" fill="rgba(31,77,51,0.18)"/>
+              <circle cx="292" cy="44" r="9" fill="none" stroke="#1f4d33" stroke-width="1.2"><animate attributeName="r" values="6;18;6" dur="3.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="3.2s" repeatCount="indefinite"/></circle>
+              <circle cx="292" cy="44" r="5" fill="#1f4d33" stroke="#f3ebdc" stroke-width="1.5"/>
+              <text x="292" y="30" text-anchor="middle" fill="#161311" font-size="10" font-family="Geist Mono,monospace" font-weight="700" letter-spacing="0.08em">EU</text>
             </g>
-            <g style="cursor:none" onclick="tdActivate('uae')">
-              <circle cx="286" cy="92" r="9" fill="rgba(236,58,20,0.15)" stroke="#ec3a14" stroke-width="1"/>
-              <circle cx="286" cy="92" r="4" fill="#ec3a14"/>
-              <text x="286" y="112" text-anchor="middle" fill="#161311" font-size="8" font-family="Geist Mono,monospace" font-weight="600">UAE</text>
+            <g style="cursor:none" onclick="tdActivate('uae')" id="pin-uae">
+              <circle cx="332" cy="76" r="11" fill="rgba(236,58,20,0.13)"/>
+              <circle cx="332" cy="76" r="8" fill="none" stroke="#ec3a14" stroke-width="1.1"><animate attributeName="r" values="5;16;5" dur="3.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur="3.4s" repeatCount="indefinite"/></circle>
+              <circle cx="332" cy="76" r="4.5" fill="#ec3a14" stroke="#f3ebdc" stroke-width="1.3"/>
+              <text x="332" y="100" text-anchor="middle" fill="#161311" font-size="9" font-family="Geist Mono,monospace" font-weight="700" letter-spacing="0.08em">UAE</text>
             </g>
           </svg>
         </div>
@@ -1315,7 +1339,134 @@ document.querySelectorAll('.btn,.nav-cta,.td-link,.yt-link-chip').forEach(b=>{
   b.addEventListener('mouseleave',()=>{b.style.transform=''});
 });
 
-// === Active nav link on scroll ===
+// === Dot-matrix world map ===
+function buildDotMap(){
+  const g=document.getElementById('dotMapDots');
+  if(!g) return;
+  const COLS=65, ROWS=28, SP=8, R=1.5;
+  // Continent regions defined as overlapping ellipses (cx, cy, rx, ry)
+  const regions=[
+    // ── North America ──
+    [10,4,3,1.4],[14,3,5,1.4],[19,3,4,1.4],[22,3,2.5,1.4],
+    [10,5.5,4,1.6],[15,5,6,1.8],[19,5.5,3,1.4],
+    [11,7,4,1.6],[15,7,5,1.6],[18,7,2.5,1.4],
+    [12,9,3,1.4],[15,9,3,1.4],[17,9.5,2,1.2],
+    [16,11,1.8,1.2],[17,12,1.5,0.9],
+    // Greenland
+    [24,3,1.6,1.4],[25,4,1.2,1],
+    // Central America
+    [18,12.5,1.3,0.7],[19,13,0.9,0.6],
+    // ── South America ──
+    [21,14,1.6,1.2],[22,15,2,1.4],[23,16.5,2.2,1.4],
+    [23,18,1.8,1.4],[23,19.5,1.6,1.3],[22.5,21,1.3,1.2],
+    [22,22.5,1,1.1],[22,24,0.7,0.9],
+    // ── Europe ──
+    [32,4,2,1],[34,4,2.5,1.2],[36,4,2,1],[38,4,2.5,1.2],
+    [33,5.5,2.5,1.2],[36,5.5,3,1.4],[38,5.5,2,1],
+    [35,7,2,1],[37,6.5,1.5,0.8],
+    // Scandinavia
+    [34,3,2,1],[36,2.5,2,1],
+    // ── Africa ──
+    [34,10,3,1.4],[37,10,3,1.4],[40,10,2.5,1.4],
+    [34,12,2.5,1.4],[37,12,3,1.4],[40,12,2.5,1.4],
+    [35,14,2.5,1.4],[37,14,2.5,1.4],[39,14,2,1.2],
+    [36,16,2.2,1.4],[38,16,2,1.2],
+    [37,18,2,1.4],[38,19,1.4,1.2],
+    [38,20.5,1,1],
+    // Madagascar
+    [41,18,0.7,1.2],
+    // ── Middle East ──
+    [42,9,2,1.2],[43,10,1.5,1],
+    // ── Asia / Russia ──
+    [44,3,3,1.2],[48,2.5,3,1.2],[52,2.5,3,1.2],
+    [56,3,3,1.2],[60,3,3,1.2],
+    [44,5,3,1.2],[48,5,3,1.4],[52,5,3,1.4],[56,5,3,1.4],[60,5,2,1.2],
+    [44,7,3,1.4],[48,7,3,1.4],[52,7,3,1.4],[55,7.5,2,1.2],
+    // China
+    [49,9,4,1.6],[53,9,3,1.4],
+    [49,11,3,1.4],[52,11,3,1.4],
+    // India
+    [44,10.5,2,1.2],[44.5,12,1.5,1.2],[44.5,13,1,0.9],
+    // SE Asia / Indonesia
+    [50,13,2,1],[52,13.5,2,1],[54,13.5,2,1],
+    [51,14.5,1.8,0.8],[53.5,14.5,2,0.8],[56,14.5,1.8,0.8],
+    // Japan
+    [58,6.5,0.9,1.2],[58.5,7.5,0.6,0.7],
+    // Korea
+    [56,8,0.7,0.8],
+    // Philippines
+    [55,12.5,0.7,1],
+    // ── Australia ──
+    [54,18,2.5,1.2],[57,18,3,1.4],[60,18,2,1.2],
+    [55,19.5,2.5,1.2],[58,19.5,2.5,1.2],
+    [57,20.5,1.5,0.7],
+    // NZ
+    [62,21.5,0.8,0.8],[62.5,22.5,0.6,0.5]
+  ];
+  function isLand(c,r){
+    for(const [cx,cy,rx,ry] of regions){
+      const dx=(c-cx)/rx, dy=(r-cy)/ry;
+      if(dx*dx+dy*dy<=1) return true;
+    }
+    return false;
+  }
+  // Pin proximity for slight emphasis
+  const pins=[[13,6],[36,5],[44,10],[41,9],[56,18]];
+  function nearPin(c,r){
+    for(const [pc,pr] of pins){
+      if(Math.abs(c-pc)<3 && Math.abs(r-pr)<3) return true;
+    }
+    return false;
+  }
+  let html='';
+  for(let r=0;r<ROWS;r++){
+    for(let c=0;c<COLS;c++){
+      if(isLand(c,r)){
+        const x=c*SP+SP/2, y=r*SP+SP/2;
+        const np=nearPin(c,r);
+        const op=np?0.85:0.5;
+        const rad=np?R+0.2:R;
+        html+=`<circle cx="${x}" cy="${y}" r="${rad}" fill="#161311" opacity="${op}"/>`;
+      }
+    }
+  }
+  g.innerHTML=html;
+}
+buildDotMap();
+
+// === Count-up animation for stats ===
+function animateCount(el){
+  const originalHTML=el.innerHTML;
+  const txt=el.textContent.trim();
+  const m=txt.match(/^([^\d]*?)([\d.]+)([^\d]*)$/);
+  if(!m) return;
+  const prefix=m[1], target=parseFloat(m[2]), suffix=m[3];
+  const isInt=Number.isInteger(target);
+  const dur=1400, start=performance.now();
+  function step(t){
+    const p=Math.min(1,(t-start)/dur);
+    const eased=1-Math.pow(1-p,3);
+    const v=target*eased;
+    el.textContent=prefix+(isInt?Math.round(v):v.toFixed(1))+suffix;
+    if(p<1) requestAnimationFrame(step);
+    else el.innerHTML=originalHTML;
+  }
+  requestAnimationFrame(step);
+}
+const countObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting && !e.target.dataset.counted){
+      e.target.dataset.counted='1';
+      animateCount(e.target);
+      countObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.hm-num, .td-imp-val, .impact-cell .val, .kpi-val, .ph-num').forEach(el=>{
+  const t=el.textContent.trim();
+  if(/[\d]/.test(t)) countObs.observe(el);
+});
+
 const sections=document.querySelectorAll('section[id]');
 const navAnchors=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{

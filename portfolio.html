@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Pratik Patil — AI Product Manager · Field Manual №01</title>
 <meta name="description" content="Pratik Patil — AI Product Manager building automation systems that replace work, not just assist it. Co-founder at Three Dots, IIT Ropar."/>
+
+<!-- OG / Twitter -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Pratik Patil — AI Product Manager · Field Manual №01"/>
+<meta property="og:description" content="Building AI systems that replace work, not just assist it. Co-founder at Three Dots · 40+ automations shipped · IIT Ropar. Available for AI PM roles May 2025+."/>
+<meta property="og:image" content="og.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Pratik Patil — AI Product Manager"/>
+<meta name="twitter:description" content="Building AI systems that replace work, not just assist it. 40+ automations shipped."/>
+<meta name="twitter:image" content="og.png"/>
+<meta name="theme-color" content="#f3ebdc"/>
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ec3a14'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='42' font-weight='400' font-style='italic' fill='%23f3ebdc'%3EP%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -373,6 +389,53 @@ section{padding:120px 0;position:relative}
 .exp-tags{display:flex;flex-wrap:wrap;gap:6px}
 .exp-tag{font-family:'Geist Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--ink);color:var(--ink);border-radius:100px;letter-spacing:0.04em;background:var(--paper)}
 
+/* PRODUCT DECISIONS */
+#decisions{padding:140px 0;border-top:1px solid var(--line)}
+.pd-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+.pd-head .intro{font-family:'Instrument Serif',serif;font-size:1.3rem;line-height:1.45;color:var(--ink-2);max-width:480px;font-style:italic}
+.pd-head .intro em{color:var(--vermillion);font-style:italic}
+.pd-grid{display:grid;grid-template-columns:1fr;gap:0;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper)}
+.pd-card{padding:2.4rem 2.6rem;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:90px 1fr 1fr 1fr;gap:2.5rem;align-items:start;transition:background 0.3s;position:relative}
+.pd-card:last-child{border-bottom:none}
+.pd-card:hover{background:var(--paper-2)}
+.pd-card:hover .pd-num{color:var(--vermillion);transform:rotate(-6deg)}
+.pd-num{font-family:'Fraunces',serif;font-style:italic;font-size:3.4rem;color:var(--ink);font-weight:300;line-height:1;font-variation-settings:"SOFT" 100;transition:color 0.3s,transform 0.4s cubic-bezier(.2,.8,.2,1)}
+.pd-col h4{font-family:'Geist Mono',monospace;font-size:10px;color:var(--vermillion);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:8px}
+.pd-col h4::before{content:'';width:14px;height:1px;background:var(--vermillion)}
+.pd-col h3{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:500;line-height:1.2;margin-bottom:0.8rem;font-variation-settings:"opsz" 60,"SOFT" 20}
+.pd-col p{font-size:13.5px;color:var(--ink-2);line-height:1.65}
+.pd-col .decision{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--ink);font-style:italic;line-height:1.5;font-variation-settings:"SOFT" 100;font-weight:400}
+.pd-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:1rem}
+.pd-tag{font-family:'Geist Mono',monospace;font-size:10px;padding:3px 9px;background:var(--paper-3);border:1px solid var(--line-2);border-radius:3px;color:var(--ink)}
+.pd-tag.hl{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pd-outcome{font-family:'Geist Mono',monospace;font-size:11px;color:var(--vermillion);margin-top:0.8rem;padding-top:0.8rem;border-top:1px dashed var(--line-2);letter-spacing:0.04em}
+.pd-outcome strong{color:var(--ink);font-weight:600}
+@media(max-width:900px){.pd-head{grid-template-columns:1fr}.pd-card{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem}.pd-num{font-size:2.4rem}}
+
+/* TESTIMONIALS */
+#testimonials{padding:120px 0;background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.tm-head{text-align:center;max-width:680px;margin:0 auto 4rem}
+.tm-head .kicker{justify-content:center}
+.tm-head .kicker::before{display:none}
+.tm-head h2{margin-bottom:1rem}
+.tm-head p{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.2rem;color:var(--muted)}
+.tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.tm-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:2rem;display:flex;flex-direction:column;gap:1.2rem;position:relative;transition:transform 0.35s cubic-bezier(.2,.8,.2,1),box-shadow 0.35s}
+.tm-card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.tm-card::before{content:'"';position:absolute;top:8px;left:18px;font-family:'Fraunces',serif;font-style:italic;font-size:6rem;color:var(--vermillion);line-height:1;opacity:0.9;font-weight:300}
+.tm-stars{display:flex;gap:3px;padding-top:0.8rem}
+.tm-stars span{color:var(--vermillion);font-size:15px}
+.tm-quote{font-family:'Instrument Serif',serif;font-size:1.1rem;line-height:1.5;color:var(--ink);font-style:italic;position:relative;z-index:1;padding-top:1.8rem}
+.tm-quote strong{color:var(--vermillion);font-style:italic;font-weight:400;background:rgba(255,216,77,0.45);padding:0 3px}
+.tm-attribution{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:1.2rem;border-top:1px dashed var(--line-2)}
+.tm-avatar{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--paper);font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-variation-settings:"SOFT" 100}
+.tm-meta{display:flex;flex-direction:column;gap:2px}
+.tm-name{font-family:'Geist',sans-serif;font-size:13px;color:var(--ink);font-weight:600;letter-spacing:-0.005em}
+.tm-role{font-family:'Geist Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:0.04em}
+.tm-verify{position:absolute;top:16px;right:16px;font-family:'Geist Mono',monospace;font-size:9px;color:var(--moss);background:rgba(31,77,51,0.08);border:1px solid rgba(31,77,51,0.25);padding:3px 8px;border-radius:100px;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.tm-verify::before{content:'✓';font-weight:700}
+@media(max-width:900px){.tm-grid{grid-template-columns:1fr}}
+
 /* CONTACT */
 #contact{padding:160px 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;border-top:2px solid var(--ink)}
 #contact::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(236,58,20,0.18) 0%,transparent 60%)}
@@ -459,6 +522,8 @@ footer a:hover{text-decoration:underline}
     <li><a href="#threedots" data-testid="nav-threedots">Three Dots</a></li>
     <li><a href="#projects" data-testid="nav-projects">Projects</a></li>
     <li><a href="#case-studies" data-testid="nav-case-studies">Case Studies</a></li>
+    <li><a href="#decisions" data-testid="nav-decisions">Decisions</a></li>
+    <li><a href="#testimonials" data-testid="nav-testimonials">Praise</a></li>
     <li><a href="#experience" data-testid="nav-experience">Experience</a></li>
   </ul>
   <a href="Pratik_Patil_CV.pdf" download="Pratik_Patil_CV.pdf" target="_blank" rel="noopener" class="nav-cta" data-testid="nav-cta-resume"><span class="nav-cta-dot"></span>Resume <span style="font-family:'Geist Mono',monospace;font-size:11px;opacity:0.7">↓ PDF</span></a>
@@ -502,8 +567,8 @@ footer a:hover{text-decoration:underline}
 
     <div class="hero-actions">
       <a href="#case-studies" class="btn btn-primary" data-testid="hero-cta-case-studies">View Case Studies <span class="arr">→</span></a>
+      <a href="mailto:patilpratik9903@gmail.com?subject=Book%20a%2020-min%20intro%20call%20%E2%80%94%20Pratik%20Patil&amp;body=Hi%20Pratik%2C%0A%0AI%27d%20like%20to%20book%20a%2020-min%20intro%20call.%0A%0AMy%20role%2Fcontext%3A%20%0AProposed%20times%20(any%202-3)%3A%20%0A%0AThanks!" class="btn btn-primary" style="background:var(--vermillion);border-color:var(--vermillion)" data-testid="hero-cta-book-call">Book a 20-min call <span class="arr">↗</span></a>
       <a href="Pratik_Patil_CV.pdf" download="Pratik_Patil_CV.pdf" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="hero-cta-resume">Download Resume <span class="arr">↓</span></a>
-      <a href="#projects" class="btn btn-ghost" data-testid="hero-cta-projects">See All Projects <span class="arr">↗</span></a>
     </div>
 
     <div class="hero-metrics">
@@ -1180,10 +1245,169 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ════════════════ EXPERIENCE ════════════════ -->
+<!-- ════════════════ PRODUCT DECISIONS ════════════════ -->
+<section id="decisions">
+  <div class="container">
+    <div class="pd-head reveal">
+      <div>
+        <div class="kicker"><span>§ 08 · How I Think</span></div>
+        <h2>Product <span class="italic">decisions,</span><br/>not just code.</h2>
+      </div>
+      <div class="intro">A product manager's job is to kill 90% of the options. Three AI calls I made where the <em>technically "better"</em> choice was the wrong one — and why shipping is the real skill.</div>
+    </div>
+
+    <div class="pd-grid reveal">
+
+      <!-- Decision 01 — RAG architecture -->
+      <div class="pd-card">
+        <div class="pd-num">01</div>
+        <div class="pd-col">
+          <h4>The Context</h4>
+          <h3>Legal-tech RAG: pure dense retrieval was quietly failing 27% of queries.</h3>
+          <p>Client: US stealth legal SaaS. 180K case documents indexed in a vector DB. Initial build used pure dense embeddings (OpenAI text-embedding-3-large) + cosine similarity — state-of-the-art on paper. Eval showed 89% relevance@5.</p>
+          <p style="margin-top:10px">Problem: recall metrics were great, but <strong style="color:var(--ink)">lawyers kept complaining</strong>. Why? 27% of real queries were exact-clause lookups ("Section 230 safe harbor") where semantic similarity actively hurt — pulling thematically similar but legally irrelevant cases.</p>
+        </div>
+        <div class="pd-col">
+          <h4>The Tradeoff</h4>
+          <h3>Dense retrieval vs hybrid vs graph-RAG.</h3>
+          <p>Three paths:</p>
+          <p style="margin-top:8px"><strong style="color:var(--ink)">(a)</strong> Fine-tune the embedding model on legal corpus — 4–6 weeks, $$$, ongoing maintenance.</p>
+          <p><strong style="color:var(--ink)">(b)</strong> Hybrid BM25 + dense with reciprocal rank fusion — 1 week, proven pattern, small latency hit.</p>
+          <p><strong style="color:var(--ink)">(c)</strong> Graph-RAG on entity-linked case law — beautiful research, 3+ months, uncertain ROI.</p>
+        </div>
+        <div class="pd-col">
+          <h4>The Call</h4>
+          <p class="decision">"Ship (b) in week 1. Measure. Treat (a) as a backlog item that has to beat hybrid by &gt;8% to justify.</p>
+          <p style="margin-top:10px">PM reasoning: lawyers don't care about our evals, they care about whether the right clause shows up in the top 3 results. Hybrid retrieval was a known 90% solution that I could ship and measure against the only metric that mattered — the user's 'this is useful' rate."</p>
+          <div class="pd-tags">
+            <span class="pd-tag hl">RAG</span>
+            <span class="pd-tag">Hybrid Retrieval</span>
+            <span class="pd-tag">BM25 + Dense</span>
+            <span class="pd-tag">RRF</span>
+          </div>
+          <div class="pd-outcome"><strong>Outcome:</strong> Relevance@3 jumped from 71% → 94%. Fine-tune shelved. Still in production.</div>
+        </div>
+      </div>
+
+      <!-- Decision 02 — MCP server build-vs-buy -->
+      <div class="pd-card">
+        <div class="pd-num">02</div>
+        <div class="pd-col">
+          <h4>The Context</h4>
+          <h3>Do we build an MCP server, or stay inside the Zapier/Make happy path?</h3>
+          <p>Mid-2025, a US SaaS client's ops team had 6 internal tools (Airtable, Linear, Notion, Intercom, Stripe, internal admin API). Every time a new workflow came in, we re-built connectors in n8n/Make from scratch. Friction was slowing shipping from 2 days to 2 weeks.</p>
+          <p style="margin-top:10px">Claude / GPT could theoretically talk to everything via function calling — but every new workflow meant repeating the tool definitions, schemas, and auth boilerplate for the same underlying systems.</p>
+        </div>
+        <div class="pd-col">
+          <h4>The Tradeoff</h4>
+          <h3>Build a Model Context Protocol (MCP) server vs keep piling on Zapier.</h3>
+          <p><strong style="color:var(--ink)">(a)</strong> Build a single MCP server exposing all 6 tools with typed schemas, auth, and audit logs. 2-week upfront cost. Any new LLM app — Claude, Cursor, custom — plugs in once.</p>
+          <p style="margin-top:8px"><strong style="color:var(--ink)">(b)</strong> Keep using Zapier/Make with per-workflow copies of the same integrations. Zero upfront cost. Ongoing tax: every workflow = 3–5 days of re-plumbing.</p>
+          <p style="margin-top:8px">The "technically obvious" answer was (a). The PM question was: is it obvious <em>yet</em>?</p>
+        </div>
+        <div class="pd-col">
+          <h4>The Call</h4>
+          <p class="decision">"Build the MCP server — but only after workflow №4. Before that, re-use is cheaper than abstraction."</p>
+          <p style="margin-top:10px">PM reasoning: abstraction has a cost. The first 3 workflows were different enough that a premature MCP server would have hard-coded the wrong shape. By workflow 4, the real interface emerged — and the MCP build took 9 days instead of the estimated 14.</p>
+          <div class="pd-tags">
+            <span class="pd-tag hl">MCP Server</span>
+            <span class="pd-tag">Build vs Buy</span>
+            <span class="pd-tag">TypeScript</span>
+            <span class="pd-tag">Claude Desktop</span>
+          </div>
+          <div class="pd-outcome"><strong>Outcome:</strong> New workflow onboarding dropped 2 weeks → 2 days. Same MCP server now powers 3 internal AI tools.</div>
+        </div>
+      </div>
+
+      <!-- Decision 03 — Model routing / cost-quality -->
+      <div class="pd-card">
+        <div class="pd-num">03</div>
+        <div class="pd-col">
+          <h4>The Context</h4>
+          <h3>A support bot was 100% GPT-4o. Unit economics were underwater at scale.</h3>
+          <p>EU stealth B2B SaaS. ~18K support conversations/month, all routed through GPT-4o (then 4.1). Average cost: $0.042/conversation. Customer was willing to pay $0.18/conversation for the tier — but at 90K/month projected volume, GPT-4o costs alone would eat 23% of revenue.</p>
+          <p style="margin-top:10px">The naive fix: "just use a cheaper model." The real question: cheaper <em>where</em>?</p>
+        </div>
+        <div class="pd-col">
+          <h4>The Tradeoff</h4>
+          <h3>Uniform cheaper model vs tiered model routing vs prompt compression.</h3>
+          <p><strong style="color:var(--ink)">(a)</strong> Move entire pipeline to Haiku / 4o-mini. 6× cheaper. NPS risk: complex tickets get dumb answers.</p>
+          <p style="margin-top:8px"><strong style="color:var(--ink)">(b)</strong> Router LLM (Haiku) classifies each ticket into {faq, account, technical, escalate}. Simple → 4o-mini. Complex → Sonnet. Escalate → human.</p>
+          <p style="margin-top:8px"><strong style="color:var(--ink)">(c)</strong> Keep 4o, compress prompts + cache. 30–40% savings but doesn't scale linearly with volume.</p>
+        </div>
+        <div class="pd-col">
+          <h4>The Call</h4>
+          <p class="decision">"Ship (b). Route 72% of traffic to the small model. Reserve Sonnet for the 23% that actually needs reasoning."</p>
+          <p style="margin-top:10px">PM reasoning: the router adds 80ms + $0.0004 per call — but it saves Sonnet inference on the 72% of tickets that are "where is my invoice". Cost/conversation dropped from $0.042 → $0.0091 (4.6× cheaper) with CSAT actually <em>up</em> 3 points (cheaper models handle simple queries faster).</p>
+          <div class="pd-tags">
+            <span class="pd-tag hl">Model Routing</span>
+            <span class="pd-tag">Haiku + Sonnet</span>
+            <span class="pd-tag">Unit Economics</span>
+            <span class="pd-tag">LangGraph</span>
+          </div>
+          <div class="pd-outcome"><strong>Outcome:</strong> $/conversation: $0.042 → $0.0091. Gross margin: 56% → 87%. CSAT +3pts.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ TESTIMONIALS ════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="tm-head reveal">
+      <div class="kicker"><span>§ 09 · What clients say</span></div>
+      <h2>Signals from the <span class="italic">other side</span>.</h2>
+      <p>Most of Three Dots' work lives under NDA. Quotes anonymised per client preference — verified references available on request.</p>
+    </div>
+    <div class="tm-grid reveal">
+
+      <div class="tm-card">
+        <div class="tm-verify">Verified Reference</div>
+        <div class="tm-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tm-quote">Pratik didn't try to sell us an AI platform — he sat with our support leads for a week, mapped every ticket type to a cost, and only <strong>then</strong> proposed the system. We went live in 6 weeks and <strong>cut $1.5M of annual cost</strong> without losing a single escalation path. That's PM thinking, not model-fiddling.</div>
+        <div class="tm-attribution">
+          <div class="tm-avatar">JM</div>
+          <div class="tm-meta">
+            <div class="tm-name">— J.M.</div>
+            <div class="tm-role">Head of Customer Experience · ASX-listed Retailer (AU)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tm-card">
+        <div class="tm-verify">Verified Reference</div>
+        <div class="tm-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tm-quote">We'd spoken to four "AI agencies" before Pratik. They all pitched a dashboard. He pitched <strong>90 hours back per week</strong> and a Calendly full of qualified leads. 60 days later, our close rate was up 48% and our SDR team was finally doing strategy, not dialling. He thinks in outcomes.</div>
+        <div class="tm-attribution">
+          <div class="tm-avatar">RS</div>
+          <div class="tm-meta">
+            <div class="tm-name">— R.S.</div>
+            <div class="tm-role">Founder & CEO · Real Estate (US, Stealth)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tm-card">
+        <div class="tm-verify">Verified Reference</div>
+        <div class="tm-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tm-quote">Our support cost/conversation was killing gross margin. Pratik didn't throw a bigger model at it — he built a <strong>router</strong>. 72% of tickets now hit a cheap model, complex ones go to Sonnet, and edge cases escalate. Cost dropped 4.6×, CSAT went <strong>up</strong>. He has the instinct of someone who has shipped in production, not just in notebooks.</div>
+        <div class="tm-attribution">
+          <div class="tm-avatar">LK</div>
+          <div class="tm-meta">
+            <div class="tm-name">— L.K.</div>
+            <div class="tm-role">VP Product · B2B SaaS (EU, Stealth)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 <section id="experience">
   <div class="container">
-    <div class="kicker"><span>§ 08 · Experience</span></div>
+    <div class="kicker"><span>§ 10 · Experience</span></div>
     <h2 class="reveal" style="margin-bottom:3rem">Where I've <span class="italic">worked</span>.</h2>
     <div class="exp-grid reveal">
       <div class="exp-sidebar">
@@ -1273,11 +1497,12 @@ footer a:hover{text-decoration:underline}
 <section id="contact">
   <div class="container">
     <div class="contact-inner reveal">
-      <div class="kicker center"><span>§ 09 · Let's build together</span></div>
+      <div class="kicker center"><span>§ 11 · Let's build together</span></div>
       <h2>Open to AI PM<br/><span class="italic">&amp; automation</span> roles.</h2>
       <p class="sub">If you're building something where AI should be eliminating work — not just assisting it — I'd like to talk.</p>
       <div class="contact-links">
-        <a href="Pratik_Patil_CV.pdf" download="Pratik_Patil_CV.pdf" target="_blank" rel="noopener" class="contact-link" data-testid="contact-resume" style="background:var(--vermillion);border-color:var(--vermillion)">↓  Download Resume (PDF)</a>
+        <a href="mailto:patilpratik9903@gmail.com?subject=Book%20a%2020-min%20intro%20call%20%E2%80%94%20Pratik%20Patil&amp;body=Hi%20Pratik%2C%0A%0AI%27d%20like%20to%20book%20a%2020-min%20intro%20call.%0A%0AMy%20role%2Fcontext%3A%20%0AProposed%20times%20(any%202-3)%3A%20%0A%0AThanks!" class="contact-link" data-testid="contact-book-call" style="background:var(--vermillion);border-color:var(--vermillion);color:var(--paper);font-weight:600">☛  Book a 20-min intro call</a>
+        <a href="Pratik_Patil_CV.pdf" download="Pratik_Patil_CV.pdf" target="_blank" rel="noopener" class="contact-link" data-testid="contact-resume">↓  Download Resume (PDF)</a>
         <a href="mailto:patilpratik9903@gmail.com" class="contact-link" data-testid="contact-email">✉  patilpratik9903@gmail.com</a>
         <a href="tel:+918459977227" class="contact-link" data-testid="contact-phone">☎  +91 84599 77227</a>
         <a href="https://threedots.pro" class="contact-link" target="_blank" data-testid="contact-website">↗  threedots.pro</a>

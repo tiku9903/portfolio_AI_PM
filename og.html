@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:630px;background:#f3ebdc;font-family:'Geist',sans-serif;color:#161311;position:relative;overflow:hidden}
+body::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.5;mix-blend-mode:multiply}
+.frame{position:absolute;top:50px;left:60px;right:60px;border-top:2px solid #161311;border-bottom:1px solid #161311;padding:14px 0;display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:0.15em;text-transform:uppercase}
+.content{position:absolute;top:180px;left:60px;right:60px;bottom:80px}
+h1{font-family:'Fraunces',serif;font-size:128px;font-weight:400;line-height:1;letter-spacing:-0.035em;font-variation-settings:"opsz" 144,"SOFT" 30}
+h1 em{font-style:italic;color:#ec3a14;font-variation-settings:"SOFT" 100}
+.tag{margin-top:40px;display:flex;align-items:center;gap:20px;font-family:'Geist Mono',monospace;font-size:19px;letter-spacing:0.1em;text-transform:uppercase;color:#6e6256}
+.tag b{color:#161311;font-weight:500}
+.tag .dot{width:10px;height:10px;background:#ec3a14;border-radius:50%}
+.stamp{position:absolute;top:30px;right:80px;width:200px;height:200px;border:3px solid #ec3a14;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Geist Mono',monospace;font-size:13px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#ec3a14;transform:rotate(-10deg);line-height:1.35}
+.stamp::before{content:'';position:absolute;inset:7px;border:1.5px dashed #ec3a14;border-radius:50%;opacity:0.5}
+.highlight{position:relative;display:inline-block;z-index:1}
+.highlight::before{content:'';position:absolute;left:-8px;right:-8px;bottom:8%;height:42%;background:#ffd84d;z-index:-1;transform:skew(-3deg) rotate(-0.6deg)}
+.footer{position:absolute;bottom:40px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;color:#161311}
+.footer strong{color:#ec3a14}
+</style></head>
+<body>
+<div class="frame">
+  <span>The AI PM Field Manual · Vol 01</span>
+  <span>Pratik Patil</span>
+  <span>IIT Ropar · 2025</span>
+</div>
+<div class="stamp">Available<br/>For Hire<br/>№ 0001</div>
+<div class="content">
+  <h1>Building <em>AI</em><br/>that <span class="highlight">replaces work.</span></h1>
+  <div class="tag">
+    <span class="dot"></span>
+    <span><b>AI Product Manager</b></span>
+    <span>·</span>
+    <span>Co-founder at Three Dots</span>
+    <span>·</span>
+    <span>40+ systems shipped</span>
+  </div>
+</div>
+<div class="footer">
+  <span>pratikpatil.dev</span>
+  <span><strong>↓</strong> Available May 2025+</span>
+</div>
+</body></html>
